@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * Bean for User
+ */
 public class User {
     private int idUser;
     private String name;
