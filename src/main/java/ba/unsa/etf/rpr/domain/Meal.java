@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.util.Objects;
+
 /**
  * Bean of Meal
  */
@@ -52,4 +54,14 @@ public class Meal {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meal meal = (Meal) o;
+        return idMeal == meal.idMeal && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name);
+    }
+
+
 }
