@@ -2,6 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+
+/**
+ * Bean of Order_Meal
+ */
 public class Order_Meal {
     private int idOrder_Meal;
     private int idOrder;
