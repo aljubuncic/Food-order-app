@@ -62,6 +62,8 @@ public class Meal {
         Meal meal = (Meal) o;
         return idMeal == meal.idMeal && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name);
     }
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(idMeal, name, price, quantity);
+    }
 }
