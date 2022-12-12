@@ -57,6 +57,8 @@ public class Order {
         Order order = (Order) o;
         return idOrder == order.idOrder && idUser == order.idUser && Double.compare(order.price, price) == 0 && dateOfOrder.equals(order.dateOfOrder);
     }
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(idOrder, idUser, dateOfOrder, price);
+    }
 }
