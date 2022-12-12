@@ -41,5 +41,15 @@ public class Order {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "idOrder=" + idOrder +
+                ", idUser=" + idUser +
+                ", dateOfOrder=" + dateOfOrder +
+                ", price=" + price +
+                '}';
+    }
+
 
 }
