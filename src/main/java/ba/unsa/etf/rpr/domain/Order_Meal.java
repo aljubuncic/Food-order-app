@@ -48,5 +48,8 @@ public class Order_Meal {
         return idOrder_Meal == that.idOrder_Meal && idOrder == that.idOrder && idMeal == that.idMeal;
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(idOrder_Meal, idOrder, idMeal);
+    }
 }
