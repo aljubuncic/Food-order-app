@@ -28,4 +28,13 @@ public class Order_Meal {
     public void setIdMeal(int idMeal) {
         this.idMeal = idMeal;
     }
+
+    @Override
+    public String toString() {
+        return "Order_Meal{" +
+                "idOrder_Meal=" + idOrder_Meal +
+                ", idOrder=" + idOrder +
+                ", idMeal=" + idMeal +
+                '}';
+    }
 }
