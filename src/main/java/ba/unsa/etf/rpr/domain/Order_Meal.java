@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.util.Objects;
+
 public class Order_Meal {
     private int idOrder_Meal;
     private int idOrder;
@@ -37,4 +39,14 @@ public class Order_Meal {
                 ", idMeal=" + idMeal +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order_Meal that = (Order_Meal) o;
+        return idOrder_Meal == that.idOrder_Meal && idOrder == that.idOrder && idMeal == that.idMeal;
+    }
+
+
 }
