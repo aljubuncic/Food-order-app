@@ -3,6 +3,10 @@ package ba.unsa.etf.rpr.domain;
 import java.sql.Date;
 import java.util.Objects;
 
+/**
+ * Bean of Order
+ */
+
 public class Order {
     private int idOrder;
     private int idUser;
