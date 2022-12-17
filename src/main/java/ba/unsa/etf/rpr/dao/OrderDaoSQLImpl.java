@@ -16,7 +16,16 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
 
     @Override
     public Order rowToObject(ResultSet rs) throws OrderException {
-        return null;
+        Order order=new Order();
+        try {
+            order.setId(rs.getInt("id"));
+            order.setIdUser(rs.getInt("idUser"));
+            order.setDateOfOrder(rs.getDate("dateOfOrder"));
+            order.setPrice(rs.getDouble("price"));
+            return order;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
