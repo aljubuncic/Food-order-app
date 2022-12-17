@@ -8,17 +8,17 @@ import java.util.Objects;
  */
 
 public class Order implements Identifiable{
-    private int idOrder;
+    private int id;
     private int idUser;
     private Date dateOfOrder;
     private double price;
 
     public int getId() {
-        return idOrder;
+        return id;
     }
 
     public void setId(int idOrder) {
-        this.idOrder = idOrder;
+        this.id = idOrder;
     }
 
     public int getIdUser() {
@@ -48,7 +48,7 @@ public class Order implements Identifiable{
     @Override
     public String toString() {
         return "Order{" +
-                "idOrder=" + idOrder +
+                "idOrder=" + id +
                 ", idUser=" + idUser +
                 ", dateOfOrder=" + dateOfOrder +
                 ", price=" + price +
@@ -59,10 +59,10 @@ public class Order implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return idOrder == order.idOrder && idUser == order.idUser && Double.compare(order.price, price) == 0 && dateOfOrder.equals(order.dateOfOrder);
+        return id == order.id && idUser == order.idUser && Double.compare(order.price, price) == 0 && dateOfOrder.equals(order.dateOfOrder);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(idOrder, idUser, dateOfOrder, price);
+        return Objects.hash(id, idUser, dateOfOrder, price);
     }
 }

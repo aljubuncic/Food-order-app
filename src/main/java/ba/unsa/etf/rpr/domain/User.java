@@ -6,7 +6,7 @@ import java.util.Objects;
  * Bean for User
  */
 public class User implements Identifiable{
-    private int idUser;
+    private int id;
     private String name;
     private String surname;
     private String email;
@@ -15,7 +15,7 @@ public class User implements Identifiable{
     private String telephoneNumber;
 
     public int getId() {
-        return idUser;
+        return id;
     }
 
     public String getName() {
@@ -43,7 +43,7 @@ public class User implements Identifiable{
     }
 
     public void setId(int idUser) {
-        this.idUser = idUser;
+        this.id = idUser;
     }
 
     public void setName(String name) {
@@ -73,7 +73,7 @@ public class User implements Identifiable{
     @Override
     public String toString() {
         return "User{" +
-                "idUser=" + idUser +
+                "idUser=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
@@ -88,11 +88,11 @@ public class User implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return idUser == user.idUser && name.equals(user.name) && surname.equals(user.surname) && Objects.equals(email, user.email) && password.equals(user.password) && address.equals(user.address) && Objects.equals(telephoneNumber, user.telephoneNumber);
+        return id == user.id && name.equals(user.name) && surname.equals(user.surname) && Objects.equals(email, user.email) && password.equals(user.password) && address.equals(user.address) && Objects.equals(telephoneNumber, user.telephoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, name, surname, email, password, address, telephoneNumber);
+        return Objects.hash(id, name, surname, email, password, address, telephoneNumber);
     }
 }

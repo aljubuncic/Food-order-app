@@ -7,16 +7,16 @@ import java.util.Objects;
  * Bean of Order_Meal
  */
 public class Order_Meal implements Identifiable{
-    private int idOrder_Meal;
+    private int id;
     private int idOrder;
     private int idMeal;
 
     public int getId() {
-        return idOrder_Meal;
+        return id;
     }
 
-    public void setIdOrder_Meal(int idOrder_Meal) {
-        this.idOrder_Meal = idOrder_Meal;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdOrder() {
@@ -31,14 +31,14 @@ public class Order_Meal implements Identifiable{
         return idMeal;
     }
 
-    public void setId(int idMeal) {
+    public void setIdMeal(int idMeal) {
         this.idMeal = idMeal;
     }
 
     @Override
     public String toString() {
         return "Order_Meal{" +
-                "idOrder_Meal=" + idOrder_Meal +
+                "idOrder_Meal=" + id +
                 ", idOrder=" + idOrder +
                 ", idMeal=" + idMeal +
                 '}';
@@ -49,11 +49,11 @@ public class Order_Meal implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order_Meal that = (Order_Meal) o;
-        return idOrder_Meal == that.idOrder_Meal && idOrder == that.idOrder && idMeal == that.idMeal;
+        return id == that.id && idOrder == that.idOrder && idMeal == that.idMeal;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idOrder_Meal, idOrder, idMeal);
+        return Objects.hash(id, idOrder, idMeal);
     }
 }

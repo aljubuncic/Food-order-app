@@ -7,18 +7,18 @@ import java.util.Objects;
  */
 
 public class Meal implements Identifiable{
-    private int idMeal;
+    private int id;
     private String name;
     private double price;
     private int quantity;
     private  enum type{Appetizer,MainDish,Desert,Drink};
 
     public int getId() {
-        return idMeal;
+        return id;
     }
 
     public void setId(int idMeal) {
-        this.idMeal = idMeal;
+        this.id = idMeal;
     }
 
     public String getName() {
@@ -55,7 +55,7 @@ public class Meal implements Identifiable{
     @Override
     public String toString() {
         return "Meal{" +
-                "idMeal=" + idMeal +
+                "idMeal=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
@@ -67,10 +67,10 @@ public class Meal implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meal meal = (Meal) o;
-        return idMeal == meal.idMeal && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name);
+        return id == meal.id && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(idMeal, name, price, quantity);
+        return Objects.hash(id, name, price, quantity);
     }
 }
