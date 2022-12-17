@@ -26,5 +26,14 @@ public interface UserDao extends Dao<User>{
      */
     User getByTelephoneNumber(String telephoneNumber) throws OrderException;
 
+    /**
+     * Returns all users with their specified name and surname
+     * @param name
+     * @param surname
+     * @return list of Users
+     * @throws OrderException
+     */
+    List<User> searchByNameAndSurname(String name, String surname) throws OrderException;
+
 
 }
