@@ -35,5 +35,11 @@ public interface UserDao extends Dao<User>{
      */
     List<User> searchByNameAndSurname(String name, String surname) throws OrderException;
 
-
+    /**
+     * Returns user with specified address
+     * @param address
+     * @return User
+     * @throws OrderException
+     */
+    User getByAddress(String address) throws OrderException;
 }
