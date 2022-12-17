@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.io.FileReader;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -71,6 +72,18 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
 
     @Override
     public List<Type> getAll() throws OrderException {
-        return null;
+        try{
+            PreparedStatement statement=this.connection.prepareStatement("SELECT * FROM "+tableName);
+            ResultSet queryResult = statement.executeQuery();
+            List<Type> records = new ArrayList<Type>();
+            while(queryResult.next()){
+                Type object = rowToObject(queryResult);
+                records.add(object);
+            }
+            queryResult.close();
+            return records;
+        }catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 }
