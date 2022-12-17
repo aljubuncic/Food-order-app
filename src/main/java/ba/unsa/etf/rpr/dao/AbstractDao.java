@@ -18,5 +18,33 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
     private String tableName;
 
     public AbstractDao(String tableName) {
+
+    }
+
+    public abstract Type rowToObject(ResultSet rs) throws OrderException;
+
+    @Override
+    public Type getById(int id) throws OrderException {
+        return null;
+    }
+
+    @Override
+    public Type add(Type item) throws OrderException {
+        return null;
+    }
+
+    @Override
+    public Type update(Type item) throws OrderException {
+        return null;
+    }
+
+    @Override
+    public void delete(int id) throws OrderException {
+        return;
+    }
+
+    @Override
+    public List<Type> getAll() throws OrderException {
+        return null;
     }
 }
