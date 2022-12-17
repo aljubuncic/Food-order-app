@@ -18,5 +18,13 @@ public interface UserDao extends Dao<User>{
      */
     User getByEmail(String email) throws OrderException;
 
+    /**
+     * Returns user with specified telephone number
+     * @param telephoneNumber
+     * @return User
+     * @throws OrderException
+     */
+    User getByTelephoneNumber(String telephoneNumber) throws OrderException;
+
 
 }
