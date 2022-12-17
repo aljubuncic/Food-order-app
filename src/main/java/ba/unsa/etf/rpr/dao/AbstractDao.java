@@ -37,7 +37,21 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
 
     @Override
     public Type getById(int id) throws OrderException {
-        return null;
+        try{
+            PreparedStatement statement=this.connection.prepareStatement("SELECT * FROM "+this.tableName+"WHERE id = ?");
+            statement.setInt(1,id);
+            ResultSet queryResult = statement.executeQuery();
+            if(queryResult.next()){
+                Type record= rowToObject(queryResult);
+                queryResult.close();
+                return record;
+            }
+            else
+                throw new OrderException("Object not found");
+        }
+        catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
