@@ -33,6 +33,10 @@ public class Meal {
         return price;
     }
 
+   /* public type getType() {
+        return type;
+    }*/
+
     public void setPrice(double price) {
         this.price = price;
     }
@@ -44,6 +48,9 @@ public class Meal {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    /*public void setType(type typeOfMeal){
+        type=typeOfMeal;
+    }*/
 
     @Override
     public String toString() {
