@@ -6,18 +6,18 @@ import java.util.Objects;
  * Bean of Meal
  */
 
-public class Meal {
+public class Meal implements Identifiable{
     private int idMeal;
     private String name;
     private double price;
     private int quantity;
     private  enum type{Appetizer,MainDish,Desert,Drink};
 
-    public int getIdMeal() {
+    public int getId() {
         return idMeal;
     }
 
-    public void setIdMeal(int idMeal) {
+    public void setId(int idMeal) {
         this.idMeal = idMeal;
     }
 

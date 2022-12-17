@@ -6,12 +6,12 @@ import java.util.Objects;
 /**
  * Bean of Order_Meal
  */
-public class Order_Meal {
+public class Order_Meal implements Identifiable{
     private int idOrder_Meal;
     private int idOrder;
     private int idMeal;
 
-    public int getIdOrder_Meal() {
+    public int getId() {
         return idOrder_Meal;
     }
 
@@ -31,7 +31,7 @@ public class Order_Meal {
         return idMeal;
     }
 
-    public void setIdMeal(int idMeal) {
+    public void setId(int idMeal) {
         this.idMeal = idMeal;
     }
 

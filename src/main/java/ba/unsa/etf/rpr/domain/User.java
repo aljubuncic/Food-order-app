@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Bean for User
  */
-public class User {
+public class User implements Identifiable{
     private int idUser;
     private String name;
     private String surname;
@@ -14,7 +14,7 @@ public class User {
     private String address;
     private String telephoneNumber;
 
-    public int getIdUser() {
+    public int getId() {
         return idUser;
     }
 
@@ -42,7 +42,7 @@ public class User {
         return telephoneNumber;
     }
 
-    public void setIdUser(int idUser) {
+    public void setId(int idUser) {
         this.idUser = idUser;
     }
 

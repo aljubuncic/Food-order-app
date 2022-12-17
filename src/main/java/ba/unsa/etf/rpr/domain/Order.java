@@ -7,17 +7,17 @@ import java.util.Objects;
  * Bean of Order
  */
 
-public class Order {
+public class Order implements Identifiable{
     private int idOrder;
     private int idUser;
     private Date dateOfOrder;
     private double price;
 
-    public int getIdOrder() {
+    public int getId() {
         return idOrder;
     }
 
-    public void setIdOrder(int idOrder) {
+    public void setId(int idOrder) {
         this.idOrder = idOrder;
     }
 
