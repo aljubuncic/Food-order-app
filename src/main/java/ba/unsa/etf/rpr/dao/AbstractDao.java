@@ -18,7 +18,19 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
     private String tableName;
 
     public AbstractDao(String tableName) {
-
+        try {
+            this.tableName = tableName;
+            Properties properties=new Properties();
+            FileReader reader=new FileReader(".idea/db.properties");
+            properties.load(reader);
+            String url = properties.getProperty("connection");
+            String username = properties.getProperty("username");
+            String password = properties.getProperty("password");
+            this.connection = DriverManager.getConnection(url,username,password);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public abstract Type rowToObject(ResultSet rs) throws OrderException;
