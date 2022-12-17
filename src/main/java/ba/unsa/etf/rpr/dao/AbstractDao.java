@@ -17,7 +17,9 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
 
     private Connection connection;
     private String tableName;
-
+    public Connection getConnection() {
+        return connection;
+    }
     public AbstractDao(String tableName) {
         try {
             this.tableName = tableName;
@@ -39,7 +41,7 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
     @Override
     public Type getById(int id) throws OrderException {
         try{
-            PreparedStatement statement=this.connection.prepareStatement("SELECT * FROM "+this.tableName+"WHERE id = ?");
+            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM "+this.tableName+"WHERE id = ?");
             statement.setInt(1,id);
             ResultSet queryResult = statement.executeQuery();
             if(queryResult.next()){
@@ -67,13 +69,19 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
 
     @Override
     public void delete(int id) throws OrderException {
-        return;
+        try{
+            PreparedStatement statement = getConnection().prepareStatement("DELETE FROM "+tableName+" WHERE id = ?", Statement.RETURN_GENERATED_KEYS);
+            statement.setObject(1, id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
     public List<Type> getAll() throws OrderException {
         try{
-            PreparedStatement statement=this.connection.prepareStatement("SELECT * FROM "+tableName);
+            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM "+tableName);
             ResultSet queryResult = statement.executeQuery();
             List<Type> records = new ArrayList<Type>();
             while(queryResult.next()){
