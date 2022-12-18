@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
 
     public OrderDaoSQLImpl(){
-        super("Order");
+        super("Orders");
     }
 
     @Override

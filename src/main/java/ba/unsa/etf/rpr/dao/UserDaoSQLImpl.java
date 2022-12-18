@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
     public UserDaoSQLImpl() {
-        super("User");
+        super("Users");
     }
 
     @Override

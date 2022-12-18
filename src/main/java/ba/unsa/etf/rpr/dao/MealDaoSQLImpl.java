@@ -10,7 +10,7 @@ import java.util.List;
 public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
 
     public MealDaoSQLImpl(){
-        super("Meal");
+        super("Meals");
     }
     @Override
     public Meal rowToObject(ResultSet rs) throws OrderException {
