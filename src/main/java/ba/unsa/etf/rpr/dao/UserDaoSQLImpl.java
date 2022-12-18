@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -32,7 +33,19 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
     @Override
     public User getByEmail(String email) throws OrderException {
-        return null;
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE email = ?");
+            statement.setObject(1,email);
+            ResultSet queryResult=statement.executeQuery();
+            User user;
+            if(!queryResult.next())
+                throw new OrderException("Object not Found");
+            user = rowToObject(queryResult);
+            queryResult.close();
+            return user;
+        }catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
