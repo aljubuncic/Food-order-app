@@ -11,7 +11,8 @@ public class Meal implements Identifiable{
     private String name;
     private double price;
     private int quantity;
-    private  enum type{Appetizer,MainDish,Desert,Drink};
+
+    private TypeOfMeal typeOfMeal;
 
     public int getId() {
         return id;
@@ -33,9 +34,9 @@ public class Meal implements Identifiable{
         return price;
     }
 
-   /* public type getType() {
-        return type;
-    }*/
+   public TypeOfMeal getType() {
+        return typeOfMeal;
+    }
 
     public void setPrice(double price) {
         this.price = price;
@@ -48,17 +49,19 @@ public class Meal implements Identifiable{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    /*public void setType(type typeOfMeal){
-        type=typeOfMeal;
-    }*/
+
+    public void setType(TypeOfMeal typeOfMeal){
+        this.typeOfMeal=typeOfMeal;
+    }
 
     @Override
     public String toString() {
         return "Meal{" +
-                "idMeal=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
+                ", typeOfMeal=" + typeOfMeal.toString() +
                 '}';
     }
 
@@ -67,10 +70,11 @@ public class Meal implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meal meal = (Meal) o;
-        return id == meal.id && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name);
+        return id == meal.id && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name) && typeOfMeal == meal.typeOfMeal;
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, quantity);
+        return Objects.hash(id, name, price, quantity, typeOfMeal);
     }
 }
