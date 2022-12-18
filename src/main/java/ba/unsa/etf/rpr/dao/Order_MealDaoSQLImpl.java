@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Order_MealDao{
 
@@ -27,6 +28,10 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
 
     @Override
     public Map<String, Object> objectToRow(Order_Meal object) {
-        return null;
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id",object.getId());
+        item.put("idOrder",object.getOrder().getId());
+        item.put("idMeal",object.getMeal().getId());
+        return item;
     }
 }
