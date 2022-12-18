@@ -12,7 +12,7 @@ import java.util.List;
 public interface MealDao extends Dao<Meal>{
 
     /**
-     * Returns meals of specified type
+     * Returns meals of specified type of meal
      * @param typeOfMeal
      * @return list of Meals
      * @throws OrderException
