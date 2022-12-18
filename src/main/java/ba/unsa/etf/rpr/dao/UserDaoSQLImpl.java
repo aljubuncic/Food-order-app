@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
@@ -65,7 +66,23 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
     @Override
     public List<User> searchByNameAndSurname(String name, String surname) throws OrderException {
-        return null;
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE name = ? AND surname = ?");
+            statement.setObject(1,name);
+            statement.setObject(2,surname);
+            ResultSet queryResult=statement.executeQuery();
+            List<User> users = new ArrayList<User>();
+            while(queryResult.next()) {
+                User record = rowToObject(queryResult);
+                users.add(record);
+            }
+            if(users.size()==0)
+                throw new OrderException("Object not found");
+            queryResult.close();
+            return users;
+        }catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
