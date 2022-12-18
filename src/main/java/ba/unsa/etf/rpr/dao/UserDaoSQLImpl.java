@@ -37,10 +37,9 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
             PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE email = ?");
             statement.setObject(1,email);
             ResultSet queryResult=statement.executeQuery();
-            User user;
             if(!queryResult.next())
                 throw new OrderException("Object not Found");
-            user = rowToObject(queryResult);
+            User user = rowToObject(queryResult);
             queryResult.close();
             return user;
         }catch(SQLException e){
@@ -50,7 +49,18 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
     @Override
     public User getByTelephoneNumber(String telephoneNumber) throws OrderException {
-        return null;
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE telephoneNumber = ?");
+            statement.setObject(1,telephoneNumber);
+            ResultSet queryResult=statement.executeQuery();
+            if(!queryResult.next())
+                throw new OrderException("Object not Found");
+            User user = rowToObject(queryResult);
+            queryResult.close();
+            return user;
+        }catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
