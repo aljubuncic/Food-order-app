@@ -50,8 +50,8 @@ public class Meal implements Identifiable{
         this.quantity = quantity;
     }
 
-    public void setType(TypeOfMeal typeOfMeal){
-        this.typeOfMeal=typeOfMeal;
+    public void setType(String typeOfMeal){
+        this.typeOfMeal= TypeOfMeal.valueOf(typeOfMeal);
     }
 
     @Override
