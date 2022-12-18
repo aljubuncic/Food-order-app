@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
@@ -14,7 +15,19 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
     @Override
     public User rowToObject(ResultSet rs) throws OrderException {
-        return null;
+        User user=new User();
+        try {
+            user.setId(rs.getInt("id"));
+            user.setName(rs.getString("name"));
+            user.setSurname(rs.getString("surname"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setAddress(rs.getString("address"));
+            user.setTelephoneNumber(rs.getString("telephone_number"));
+            return user;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage());
+        }
     }
 
     @Override
