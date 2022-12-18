@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
@@ -30,6 +31,11 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
         } catch (SQLException e) {
             throw new OrderException(e.getMessage());
         }
+    }
+
+    @Override
+    public Map<String, Object> objectToRow(User object) {
+        return null;
     }
 
     @Override
