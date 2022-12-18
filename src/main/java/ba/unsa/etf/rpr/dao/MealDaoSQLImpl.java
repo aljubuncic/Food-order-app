@@ -3,8 +3,10 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Meal;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
@@ -28,6 +30,21 @@ public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
 
     @Override
     public List<Meal> searchByType(String typeOfMeal) throws OrderException {
-        return null;
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM Meals WHERE type = ?");
+            statement.setObject(1, typeOfMeal);
+            ResultSet queryResult = statement.executeQuery();
+            List<Meal> meals = new ArrayList<>();
+            while (queryResult.next()) {
+                Meal object = rowToObject(queryResult);
+                meals.add(object);
+            }
+            if (meals.size() == 0)
+                throw new OrderException("No " + typeOfMeal + " found");
+            queryResult.close();
+            return meals;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage());
+        }
     }
 }
