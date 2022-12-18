@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
 
@@ -26,6 +27,11 @@ public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
         }catch(Exception e){
             throw new OrderException(e.getMessage());
         }
+    }
+
+    @Override
+    public Map<String, Object> objectToRow(Meal object) {
+        return null;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Order implements Identifiable{
     private int id;
-    private int idUser;
+    private User user;
     private Date dateOfOrder;
     private double price;
 
@@ -21,12 +21,12 @@ public class Order implements Identifiable{
         this.id = idOrder;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDateOfOrder() {
@@ -49,7 +49,7 @@ public class Order implements Identifiable{
     public String toString() {
         return "Order{" +
                 "idOrder=" + id +
-                ", idUser=" + idUser +
+                ", idUser=" + user +
                 ", dateOfOrder=" + dateOfOrder +
                 ", price=" + price +
                 '}';
@@ -59,10 +59,10 @@ public class Order implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && idUser == order.idUser && Double.compare(order.price, price) == 0 && dateOfOrder.equals(order.dateOfOrder);
+        return id == order.id && user == order.user && Double.compare(order.price, price) == 0 && dateOfOrder.equals(order.dateOfOrder);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(id, idUser, dateOfOrder, price);
+        return Objects.hash(id, user, dateOfOrder, price);
     }
 }

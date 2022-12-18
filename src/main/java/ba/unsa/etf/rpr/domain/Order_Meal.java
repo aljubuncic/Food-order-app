@@ -8,8 +8,8 @@ import java.util.Objects;
  */
 public class Order_Meal implements Identifiable{
     private int id;
-    private int idOrder;
-    private int idMeal;
+    private Order order;
+    private Meal meal;
 
     public int getId() {
         return id;
@@ -19,28 +19,28 @@ public class Order_Meal implements Identifiable{
         this.id = id;
     }
 
-    public int getIdOrder() {
-        return idOrder;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public int getIdMeal() {
-        return idMeal;
+    public Meal getMeal() {
+        return meal;
     }
 
-    public void setIdMeal(int idMeal) {
-        this.idMeal = idMeal;
+    public void setMeal(Meal meal) {
+        this.meal = meal;
     }
 
     @Override
     public String toString() {
         return "Order_Meal{" +
                 "idOrder_Meal=" + id +
-                ", idOrder=" + idOrder +
-                ", idMeal=" + idMeal +
+                ", idOrder=" + order +
+                ", idMeal=" + meal +
                 '}';
     }
 
@@ -49,11 +49,11 @@ public class Order_Meal implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order_Meal that = (Order_Meal) o;
-        return id == that.id && idOrder == that.idOrder && idMeal == that.idMeal;
+        return id == that.id && order == that.order && meal == that.meal;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idOrder, idMeal);
+        return Objects.hash(id, order, meal);
     }
 }

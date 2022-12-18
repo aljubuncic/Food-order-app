@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Order_MealDao{
 
@@ -16,11 +17,16 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
         Order_Meal order_meal=new Order_Meal();
         try {
             order_meal.setId(rs.getInt("id"));
-            order_meal.setIdOrder(rs.getInt("idOrder"));
-            order_meal.setIdMeal(rs.getInt("idMeal"));
+            order_meal.getOrder().setId(rs.getInt("idOrder"));
+            order_meal.getMeal().setId(rs.getInt("idMeal"));
             return order_meal;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage());
         }
+    }
+
+    @Override
+    public Map<String, Object> objectToRow(Order_Meal object) {
+        return null;
     }
 }

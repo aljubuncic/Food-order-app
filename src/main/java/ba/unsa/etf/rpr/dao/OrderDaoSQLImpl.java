@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
 
@@ -21,13 +22,18 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
         Order order=new Order();
         try {
             order.setId(rs.getInt("id"));
-            order.setIdUser(rs.getInt("idUser"));
+            order.getUser().setId(rs.getInt("idUser"));
             order.setDateOfOrder(rs.getDate("dateOfOrder"));
             order.setPrice(rs.getDouble("price"));
             return order;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage());
         }
+    }
+
+    @Override
+    public Map<String, Object> objectToRow(Order object) {
+        return null;
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -37,6 +38,8 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
     }
 
     public abstract Type rowToObject(ResultSet rs) throws OrderException;
+
+    public abstract Map<String, Object> objectToRow(Type object);
 
     @Override
     public Type getById(int id) throws OrderException {
