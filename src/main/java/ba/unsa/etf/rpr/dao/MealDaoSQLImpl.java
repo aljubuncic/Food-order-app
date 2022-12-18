@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
 
@@ -31,7 +32,13 @@ public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
 
     @Override
     public Map<String, Object> objectToRow(Meal object) {
-        return null;
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id",object.getId());
+        item.put("name",object.getName());
+        item.put("price",object.getPrice());
+        item.put("quantity",object.getQuantity());
+        item.put("type",object.getType());
+        return item;
     }
 
     @Override
