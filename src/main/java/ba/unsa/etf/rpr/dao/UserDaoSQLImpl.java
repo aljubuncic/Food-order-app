@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
@@ -35,7 +36,15 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
 
     @Override
     public Map<String, Object> objectToRow(User object) {
-        return null;
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id",object.getId());
+        item.put("name",object.getName());
+        item.put("surname",object.getSurname());
+        item.put("email",object.getEmail());
+        item.put("password",object.getPassword());
+        item.put("address",object.getAddress());
+        item.put("telephoneNumber",object.getTelephoneNumber());
+        return item;
     }
 
     @Override
