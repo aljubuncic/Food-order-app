@@ -41,7 +41,7 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
     @Override
     public Type getById(int id) throws OrderException {
         try{
-            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM "+this.tableName+"WHERE id = ?");
+            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM "+this.tableName+" WHERE id = ?");
             statement.setInt(1,id);
             ResultSet queryResult = statement.executeQuery();
             if(queryResult.next()){

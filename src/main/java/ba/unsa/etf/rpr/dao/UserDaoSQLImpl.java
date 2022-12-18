@@ -86,7 +86,22 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
     }
 
     @Override
-    public User getByAddress(String address) throws OrderException {
-        return null;
+    public List<User> getByAddress(String address) throws OrderException {
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE address = ?");
+            statement.setObject(1,address);
+            ResultSet queryResult=statement.executeQuery();
+            List<User> users = new ArrayList<>();
+            while(queryResult.next()) {
+                User record = rowToObject(queryResult);
+                users.add(record);
+            }
+            if(users.size()==0)
+                throw new OrderException("Object not found");
+            queryResult.close();
+            return users;
+        }catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 }
