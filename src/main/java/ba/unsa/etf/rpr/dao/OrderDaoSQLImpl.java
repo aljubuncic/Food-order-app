@@ -6,10 +6,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
 
@@ -33,7 +30,12 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
 
     @Override
     public Map<String, Object> objectToRow(Order object) {
-        return null;
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id",object.getId());
+        item.put("idUser",object.getUser().getId());
+        item.put("dateOfOrder",object.getDateOfOrder());
+        item.put("price",object.getPrice());
+        return item;
     }
 
     @Override
