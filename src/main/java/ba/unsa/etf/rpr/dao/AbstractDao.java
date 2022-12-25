@@ -70,7 +70,31 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
 
     @Override
     public Type add(Type item) throws OrderException {
-        return null;
+        Map<String, Object> row = objectToRow(item);
+        Map.Entry<String, String> columns = prepareInsertParts(row);
+
+        StringBuilder query = new StringBuilder();
+        query.append("INSERT INTO ").append(tableName);
+        query.append(" (").append(columns.getKey()).append(") ");
+        query.append("VALUES (").append(columns.getValue()).append(")");
+
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
+            // TreeMap is used to keep columns sorted so parameters are bound correctly
+            int counter = 1;
+            for (Map.Entry<String, Object> entry: row.entrySet()) {
+                if (entry.getKey().equals("id")) continue; // skip ID
+                stmt.setObject(counter, entry.getValue());
+                counter++;
+            }
+            stmt.executeUpdate();
+            ResultSet queryResult = stmt.getGeneratedKeys();
+            queryResult.next(); // there is surely only one key
+            item.setId(queryResult.getInt(1));
+            return item;
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     /**
