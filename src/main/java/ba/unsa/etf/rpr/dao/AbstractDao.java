@@ -37,8 +37,19 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
         }
     }
 
+    /**
+     * Method for mapping ResultSet into Object
+     * @param rs ResultSet from database
+     * @return  a Bean object for specific table
+     * @throws OrderException in case of error with database
+     */
     public abstract Type rowToObject(ResultSet rs) throws OrderException;
 
+    /**
+     * Method for mapping Object into Map
+     * @param object a Bean object for specific table
+     * @return  key, value sorted map of object
+     */
     public abstract Map<String, Object> objectToRow(Type object);
 
     @Override
