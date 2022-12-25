@@ -124,6 +124,26 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
         return null;
     }
 
+    /**
+     * Prepare columns for update statement id=?, name=?, ...
+     * @param row - row to be converted into String
+     * @return String for update statement
+     */
+    private String prepareUpdateParts(Map<String, Object> row){
+        StringBuilder columns = new StringBuilder();
+
+        int counter = 0;
+        for (Map.Entry<String, Object> entry: row.entrySet()) {
+            counter++;
+            if (entry.getKey().equals("id")) continue; //skip update of id due where clause
+            columns.append(entry.getKey()).append("= ?");
+            if (row.size() != counter) {
+                columns.append(",");
+            }
+        }
+        return columns.toString();
+    }
+
     @Override
     public void delete(int id) throws OrderException {
         try{
