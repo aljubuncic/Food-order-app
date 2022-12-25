@@ -79,16 +79,16 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
         query.append("VALUES (").append(columns.getValue()).append(")");
 
         try{
-            PreparedStatement stmt = getConnection().prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = getConnection().prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
             // TreeMap is used to keep columns sorted so parameters are bound correctly
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
                 if (entry.getKey().equals("id")) continue; // skip ID
-                stmt.setObject(counter, entry.getValue());
+                statement.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.executeUpdate();
-            ResultSet queryResult = stmt.getGeneratedKeys();
+            statement.executeUpdate();
+            ResultSet queryResult = statement.getGeneratedKeys();
             queryResult.next(); // there is surely only one key
             item.setId(queryResult.getInt(1));
             return item;
@@ -121,7 +121,29 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
 
     @Override
     public Type update(Type item) throws OrderException {
-        return null;
+        Map<String, Object> row = objectToRow(item);
+        String updateColumns = prepareUpdateParts(row);
+        StringBuilder query = new StringBuilder();
+        query.append("UPDATE ")
+                .append(tableName)
+                .append(" SET ")
+                .append(updateColumns)
+                .append(" WHERE id = ?");
+
+        try{
+            PreparedStatement statement = getConnection().prepareStatement(query.toString());
+            int counter = 1;
+            for (Map.Entry<String, Object> entry: row.entrySet()) {
+                if (entry.getKey().equals("id")) continue; // skip ID
+                statement.setObject(counter, entry.getValue());
+                counter++;
+            }
+            statement.setObject(counter, item.getId());
+            statement.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 
     /**
