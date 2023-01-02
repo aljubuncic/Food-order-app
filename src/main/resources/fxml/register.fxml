@@ -22,4 +22,14 @@
     <RowConstraints maxHeight="214.4" minHeight="10.0" prefHeight="200.00000610351563" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="145.60001220703128" minHeight="10.0" prefHeight="86.40000000000003" vgrow="SOMETIMES" />
   </rowConstraints>
+   <children>
+      <ImageView fitHeight="120.0" fitWidth="150.0">
+         <image>
+            <Image url="@../img/logo.png" />
+         </image>
+         <GridPane.margin>
+            <Insets left="175.0" />
+         </GridPane.margin>
+      </ImageView>
+   </children>
 </GridPane>
