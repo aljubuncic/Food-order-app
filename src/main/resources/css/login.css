@@ -1,0 +1,8 @@
+#login_background{
+    -fx-background-image: url("E:\faks\3.semestar\RPR\IdeaProjects\project\src\main\resources\img\login_background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+}
+.login_fields{
+    border-radius: 25px;
+}
