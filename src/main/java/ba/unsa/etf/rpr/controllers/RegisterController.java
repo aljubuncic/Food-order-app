@@ -12,6 +12,11 @@ import javafx.stage.Stage;
 
 public class RegisterController {
 
+    private void closeRegisterWindow(ActionEvent actionEvent){
+        Node node = (Node) actionEvent.getSource();
+        Stage oldStage = (Stage) node.getScene().getWindow();
+        oldStage.close();
+    }
     public TextField nameField;
     public TextField surnameField;
     public TextField usernameField;
@@ -25,4 +30,14 @@ public class RegisterController {
     public void registerClick(ActionEvent actionEvent) {
     }
 
+    public void switchToLoginWindow(ActionEvent actionEvent) throws Exception{
+        closeRegisterWindow(actionEvent);
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/login.fxml"));
+        newStage.setTitle("Login");
+        newStage.setScene(new Scene(root, 450, 400));
+        newStage.setResizable(false);
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
+    }
 }
