@@ -29,7 +29,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
          <children>
-            <Label prefHeight="18.0" prefWidth="75.0" text="Username:">
+            <Label prefHeight="18.0" prefWidth="75.0" text="Username:" textFill="#f85649">
                <VBox.margin>
                   <Insets right="75.0" />
                </VBox.margin>
@@ -45,7 +45,7 @@
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </padding>
             </TextField>
-            <Label prefHeight="18.0" prefWidth="78.0" text="Password:">
+            <Label prefHeight="18.0" prefWidth="78.0" text="Password:" textFill="#f85649">
                <VBox.margin>
                   <Insets right="75.0" />
                </VBox.margin>
@@ -76,14 +76,14 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginClick" prefHeight="27.0" prefWidth="200.0" text="Login">
+            <Button id="login_button" fx:id="loginButton" defaultButton="true" mnemonicParsing="false" onAction="#loginClick" prefHeight="27.0" prefWidth="200.0" stylesheets="@../css/login.css" text="Login" textFill="#f85649">
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Button>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="32.0" prefWidth="124.0" text="Don't have an account?">
+                  <Label prefHeight="32.0" prefWidth="124.0" text="Don't have an account?" textFill="#f85649">
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
                      </padding>

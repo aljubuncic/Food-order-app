@@ -1,9 +1,6 @@
-#login_background{
+#register_background{
     -fx-background-image: url("/img/login_register_background.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: cover;
-}
-.login_fields{
-    border-radius: 25px;
 }
