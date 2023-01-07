@@ -9,6 +9,7 @@ public class User implements Identifiable{
     private int id;
     private String name;
     private String surname;
+    private String username;
     private String email;
     private String password;
     private String address;
@@ -24,6 +25,10 @@ public class User implements Identifiable{
 
     public String getSurname() {
         return surname;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
@@ -54,6 +59,10 @@ public class User implements Identifiable{
         this.surname = surname;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -73,9 +82,10 @@ public class User implements Identifiable{
     @Override
     public String toString() {
         return "User{" +
-                "idUser=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", username=" + username +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
@@ -88,11 +98,11 @@ public class User implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && name.equals(user.name) && surname.equals(user.surname) && Objects.equals(email, user.email) && password.equals(user.password) && address.equals(user.address) && Objects.equals(telephoneNumber, user.telephoneNumber);
+        return id == user.id && name.equals(user.name) && surname.equals(user.surname) && username.equals(user.username) && Objects.equals(email, user.email) && password.equals(user.password) && Objects.equals(address, user.address) && telephoneNumber.equals(user.telephoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, email, password, address, telephoneNumber);
+        return Objects.hash(id, name, surname, username, email, password, address, telephoneNumber);
     }
 }
