@@ -1,12 +1,25 @@
-#register_background{
+#background{
     -fx-background-image: url("/img/login_register_background.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: cover;
 }
-.register_fields{
+.fields{
     -fx-border-radius: 25px;
     -fx-background-color: #252E39;
     -fx-text-fill: #f85649;
     -fx-prompt-text-fill: #f85649;
+    -fx-background-radius: 15px;
+}
+#button{
+    -fx-background-color: #252E39;
+    -fx-background-radius: 25px;
+}
+#button:hover{
+    -fx-background-color: #f85649;
+    -fx-text-fill: #252E39;
+}
+#button:pressed{
+    -fx-border-color: #ef1f10;
+    -fx-border-radius:25px;
 }
