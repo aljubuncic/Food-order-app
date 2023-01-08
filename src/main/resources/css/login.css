@@ -5,5 +5,8 @@
     -fx-background-size: cover;
 }
 .login_fields{
-    border-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-background-color: #252E39;
+    -fx-text-fill: #f85649;
+    -fx-prompt-text-fill: #f85649;
 }

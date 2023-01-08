@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -23,8 +24,8 @@ public class RegisterController {
     public TextField emailField;
     public TextField telephoneNumberField;
     public TextField addressField;
-    public TextField passwordField;
-    public TextField confirmedPasswordField;
+    public PasswordField passwordField;
+    public PasswordField confirmedPasswordField;
     public Button registerButton;
 
     public void registerClick(ActionEvent actionEvent) {

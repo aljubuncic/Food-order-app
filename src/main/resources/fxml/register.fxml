@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -27,7 +28,7 @@
          <children>
             <VBox prefHeight="205.0" prefWidth="250.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="42.0" text="Name:">
+                  <Label prefHeight="26.0" prefWidth="42.0" text="Name:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -35,7 +36,7 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="nameField" prefWidth="90.0" promptText="Enter your first name">
+                  <TextField fx:id="nameField" prefWidth="90.0" promptText="Enter your first name" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
@@ -43,7 +44,7 @@
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label prefHeight="26.0" prefWidth="58.0" text="Surname:">
+                  <Label prefHeight="26.0" prefWidth="58.0" text="Surname:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -51,7 +52,7 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="surnameField" promptText="Enter your last name">
+                  <TextField fx:id="surnameField" promptText="Enter your last name" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
@@ -59,7 +60,7 @@
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Username:">
+                  <Label text="Username:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -67,7 +68,7 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="usernameField" promptText="Enter your username">
+                  <TextField fx:id="usernameField" promptText="Enter your username" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
@@ -75,7 +76,7 @@
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Email:">
+                  <Label text="Email:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -83,7 +84,7 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="emailField" promptText="Enter your email">
+                  <TextField fx:id="emailField" promptText="Enter your email" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
@@ -95,7 +96,7 @@
             </VBox>
             <VBox prefHeight="205.0" prefWidth="250.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="118.0" text="Telephone number:">
+                  <Label prefHeight="26.0" prefWidth="118.0" text="Telephone number:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -103,7 +104,7 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="telephoneNumberField" prefWidth="90.0" promptText="Enter your telephone number">
+                  <TextField fx:id="telephoneNumberField" prefWidth="90.0" promptText="Enter your telephone number" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
@@ -111,7 +112,7 @@
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label prefHeight="26.0" prefWidth="58.0" text="Address:">
+                  <Label prefHeight="26.0" prefWidth="58.0" text="Address:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -119,7 +120,7 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="addressField" promptText="Enter your address">
+                  <TextField fx:id="addressField" promptText="Enter your address" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
@@ -127,7 +128,7 @@
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Password:">
+                  <Label text="Password:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -135,15 +136,15 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="passwordField" promptText="Enter your password">
+                  <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
-                  </TextField>
-                  <Label text="Confirm Password:">
+                  </PasswordField>
+                  <Label text="Confirm Password:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -151,14 +152,14 @@
                         <Insets bottom="4.0" top="4.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="confirmedPasswordField" promptText="Re-enter your password">
+                  <PasswordField fx:id="confirmedPasswordField" promptText="Re-enter your password" styleClass="register_fields">
                      <padding>
                         <Insets bottom="4.0" left="5.0" top="4.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="50.0" right="65.0" />
                      </VBox.margin>
-                  </TextField>
+                  </PasswordField>
                </children>
             </VBox>
          </children>
@@ -168,14 +169,14 @@
       </HBox>
       <VBox prefHeight="100.0" prefWidth="500.0" GridPane.rowIndex="2">
          <children>
-            <Button id="register_button" fx:id="registerButton" defaultButton="true" mnemonicParsing="false" onAction="#registerClick" prefHeight="26.0" prefWidth="200.0" stylesheets="@../css/register.css" text="Register">
+            <Button id="register_button" fx:id="registerButton" defaultButton="true" mnemonicParsing="false" onAction="#registerClick" prefHeight="26.0" prefWidth="200.0" stylesheets="@../css/register.css" text="Register" textFill="#f85649">
                <VBox.margin>
                   <Insets left="150.0" top="20.0" />
                </VBox.margin>
             </Button>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="32.0" prefWidth="141.0" text="Already have an account?">
+                  <Label prefHeight="32.0" prefWidth="141.0" text="Already have an account?" textFill="#f85649">
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
