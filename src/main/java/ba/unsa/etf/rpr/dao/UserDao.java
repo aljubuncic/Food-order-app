@@ -42,4 +42,12 @@ public interface UserDao extends Dao<User>{
      * @throws OrderException
      */
     List<User> getByAddress(String address) throws OrderException;
+
+    /**
+     * Returns user with specified username
+     * @param username
+     * @return User
+     * @throws OrderException
+     */
+    User getByUsername(String username) throws OrderException;
 }

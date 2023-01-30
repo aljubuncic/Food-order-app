@@ -119,4 +119,20 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
             throw new OrderException(e.getMessage());
         }
     }
+
+    @Override
+    public User getByUsername(String username) throws OrderException {
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE username = ?");
+            statement.setObject(1,username);
+            ResultSet queryResult=statement.executeQuery();
+            if(!queryResult.next())
+                throw new OrderException("Object not Found");
+            User user = rowToObject(queryResult);
+            queryResult.close();
+            return user;
+        }catch(SQLException e){
+            throw new OrderException(e.getMessage());
+        }
+    }
 }
