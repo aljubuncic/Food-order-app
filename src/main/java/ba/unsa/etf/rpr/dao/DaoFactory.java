@@ -21,7 +21,7 @@ public class DaoFactory {
         return orderDao;
     }
 
-    public static Dao order_MealDao(){
+    public static Order_MealDao order_MealDao(){
         return order_MealDao;
     }
 
