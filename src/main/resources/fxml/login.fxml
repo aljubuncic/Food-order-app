@@ -44,12 +44,17 @@
                   <Insets bottom="5.0" left="8.0" top="5.0" />
                </padding>
             </TextField>
+            <Label fx:id="checkUsername" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             <Label prefHeight="18.0" prefWidth="78.0" text="Password:" textFill="#f85649">
                <VBox.margin>
                   <Insets right="75.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="5.0" top="5.0" />
+                  <Insets bottom="5.0" top="1.0" />
                </padding>
             </Label>
             <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="fields">
@@ -60,6 +65,11 @@
                   <Insets bottom="5.0" left="8.0" top="5.0" />
                </padding>
             </PasswordField>
+            <Label fx:id="checkPassword" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
          <GridPane.margin>
             <Insets />
