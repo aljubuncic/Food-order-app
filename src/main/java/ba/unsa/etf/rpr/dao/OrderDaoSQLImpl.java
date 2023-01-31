@@ -41,7 +41,7 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
     @Override
     public List<Order> getByDateRange(Date startingDate, Date endingDate) throws OrderException {
         try{
-            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM Order WHERE dateOfOrder BETWEEN ? AND ?");
+            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM Orders WHERE dateOfOrder BETWEEN ? AND ?");
             statement.setObject(1,startingDate);
             statement.setObject(2,endingDate);
             ResultSet queryResult = statement.executeQuery();

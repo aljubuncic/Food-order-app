@@ -27,7 +27,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
             user.setAddress(rs.getString("address"));
-            user.setTelephoneNumber(rs.getString("telephone_number"));
+            user.setTelephoneNumber(rs.getString("telephoneNumber"));
             return user;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage());
@@ -50,7 +50,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
     @Override
     public User getByEmail(String email) throws OrderException {
         try{
-            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE email = ?");
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM Users WHERE email = ?");
             statement.setObject(1,email);
             ResultSet queryResult=statement.executeQuery();
             if(!queryResult.next())
@@ -66,7 +66,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
     @Override
     public User getByTelephoneNumber(String telephoneNumber) throws OrderException {
         try{
-            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE telephoneNumber = ?");
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM Users WHERE telephoneNumber = ?");
             statement.setObject(1,telephoneNumber);
             ResultSet queryResult=statement.executeQuery();
             if(!queryResult.next())
@@ -82,7 +82,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
     @Override
     public List<User> searchByNameAndSurname(String name, String surname) throws OrderException {
         try{
-            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE name = ? AND surname = ?");
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM Users WHERE name = ? AND surname = ?");
             statement.setObject(1,name);
             statement.setObject(2,surname);
             ResultSet queryResult=statement.executeQuery();
@@ -103,7 +103,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
     @Override
     public List<User> getByAddress(String address) throws OrderException {
         try{
-            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE address = ?");
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM Users WHERE address = ?");
             statement.setObject(1,address);
             ResultSet queryResult=statement.executeQuery();
             List<User> users = new ArrayList<>();
@@ -123,7 +123,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
     @Override
     public User getByUsername(String username) throws OrderException {
         try{
-            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM User WHERE username = ?");
+            PreparedStatement statement= getConnection().prepareStatement("SELECT * FROM Users WHERE username = ?");
             statement.setObject(1,username);
             ResultSet queryResult=statement.executeQuery();
             if(!queryResult.next())
