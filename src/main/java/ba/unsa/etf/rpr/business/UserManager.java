@@ -20,4 +20,8 @@ public class UserManager {
         if(!user.getPassword().equals(password))
             throw new OrderException("Incorrect password");
     }
+
+    public User getByUsername(String username) throws OrderException {
+        return DaoFactory.userDao().getByUsername(username);
+    }
 }
