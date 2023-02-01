@@ -23,24 +23,33 @@ public class LoginController {
         Stage oldStage = (Stage) node.getScene().getWindow();
         oldStage.close();
     }
-
-    private void setUsernameInvalid(){
-        usernameField.getStyleClass().add("fieldIsEmpty");
-        checkUsername.setText("Username is empty");
+    private void setFieldInvalid(TextField textField, Label checkLabel, String errorMessage) {
+        textField.getStyleClass().add("fieldIsEmpty");
+        checkLabel.setText(errorMessage);
     }
-    private void setUsernameValid(){
-        usernameField.getStyleClass().removeAll("fieldIsEmpty");
-        checkUsername.setText("");
-    }
-    private void setPasswordInvalid(){
-        passwordField.getStyleClass().add("fieldIsEmpty");
-        checkPassword.setText("Password is empty");
-    }
-    private void setPasswordValid(){
-        passwordField.getStyleClass().removeAll("fieldIsEmpty");
-        checkPassword.setText("");
+    private void setFieldValid(TextField textField, Label checkLabel) {
+        textField.getStyleClass().removeAll("fieldIsEmpty");
+        checkLabel.setText("");
     }
 
+    private boolean matchesRegex(String n,String regex,TextField textField, Label checkLabel,String fieldName,String errorMessage){
+        if(!n.matches(regex)) {
+            if (n.isEmpty()) {
+                setFieldInvalid(textField, checkLabel,  fieldName + " is empty");
+            } else {
+                setFieldInvalid(textField, checkLabel, errorMessage);
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private void addListenerToField(TextField textField, Label checkLabel, String errorMessage,String fieldName,String regex){
+        textField.textProperty().addListener(((observableValue, o, n) -> {
+            if(matchesRegex(n,regex,textField,checkLabel,fieldName,errorMessage))
+                setFieldValid(textField,checkLabel);
+        }));
+    }
 
     public TextField usernameField;
     public PasswordField passwordField;
@@ -50,35 +59,17 @@ public class LoginController {
     public Label checkPassword;
     @FXML
     public void initialize(){
-        usernameField.textProperty().addListener(((observableValue, oldUsername, newUsername) -> {
-            if(newUsername.isEmpty()) {
-                setUsernameInvalid();
-            }
-            else {
-                setUsernameValid();
-            }
-        }));
-
-        passwordField.textProperty().addListener(((obs, oldPassword, newPassword) -> {
-            if(newPassword.isEmpty()) {
-                setPasswordInvalid();
-            }
-            else {
-                setPasswordValid();
-            }
-        }));
+        addListenerToField(usernameField,checkUsername,"Username is invalid","Username","^[a-zA-Z0-9._-]+");
+        addListenerToField(passwordField,checkPassword,"Password cannot contain spaces","Password","^\\S+");
     }
 
-    public void loginClick(ActionEvent actionEvent) {
-        if(usernameField.getText().isEmpty()){
+    public void loginClick(ActionEvent actionEvent) throws IOException {
+        if(!matchesRegex(usernameField.getText(),"^[a-zA-Z0-9._-]+",usernameField,checkUsername,"Username","Username is invalid")) {
             usernameField.requestFocus();
-            setUsernameInvalid();
-            if(passwordField.getText().isEmpty())
-                setPasswordInvalid();
             return;
-        } else if (passwordField.getText().isEmpty()) {
+        }
+        if(!matchesRegex(passwordField.getText(),"^\\S+",passwordField,checkPassword,"Password","Password cannot contain spaces")){
             passwordField.requestFocus();
-            setPasswordInvalid();
             return;
         }
 
@@ -94,6 +85,7 @@ public class LoginController {
             else
                 usernameField.requestFocus();
             alert.showAndWait();
+            return;
         }
     }
 
