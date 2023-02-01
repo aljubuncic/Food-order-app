@@ -15,21 +15,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="500.0" stylesheets="@../css/login_and_register.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.RegisterController">
+<GridPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@../css/login_and_register.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.RegisterController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="140.20001831054688" minHeight="10.0" prefHeight="137.79999389648438" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="214.4" minHeight="10.0" prefHeight="200.00000610351563" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="145.60001220703128" minHeight="10.0" prefHeight="86.40000000000003" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="337.8000366210938" minHeight="10.0" prefHeight="268.8000244140625" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="177.5999816894531" minHeight="10.0" prefHeight="95.99997558593748" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
             <VBox prefHeight="205.0" prefWidth="250.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="42.0" text="Name:" textFill="#f85649">
+                  <Label prefHeight="26.0" prefWidth="42.0" text="*Name:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -45,7 +45,15 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label prefHeight="26.0" prefWidth="58.0" text="Surname:" textFill="#f85649">
+                  <Label fx:id="checkName" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="26.0" prefWidth="58.0" text="*Surname:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -61,7 +69,15 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Username:" textFill="#f85649">
+                  <Label fx:id="checkSurname" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="*Username:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -77,6 +93,14 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="checkUsername" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                   <Label text="Email:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
@@ -93,11 +117,19 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="checkEmail" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox prefHeight="205.0" prefWidth="250.0">
+            <VBox prefHeight="277.0" prefWidth="249.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="118.0" text="Telephone number:" textFill="#f85649">
+                  <Label prefHeight="26.0" prefWidth="118.0" text="*Telephone number:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -113,6 +145,14 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="checkTelephoneNumber" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                   <Label prefHeight="26.0" prefWidth="58.0" text="Address:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
@@ -129,7 +169,8 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Password:" textFill="#f85649">
+                  <Label />
+                  <Label text="*Password:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -145,7 +186,15 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Label text="Confirm Password:" textFill="#f85649">
+                  <Label fx:id="checkPassword" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="*Confirm Password:" textFill="#f85649">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>
@@ -161,6 +210,14 @@
                         <Insets left="50.0" right="60.0" />
                      </VBox.margin>
                   </PasswordField>
+                  <Label fx:id="checkConfirmedPassword" textFill="RED">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </children>
@@ -168,11 +225,19 @@
             <Insets />
          </GridPane.margin>
       </HBox>
-      <VBox prefHeight="100.0" prefWidth="500.0" GridPane.rowIndex="2">
+      <VBox prefHeight="145.0" prefWidth="502.0" GridPane.rowIndex="2">
          <children>
+            <Label text="Fields marked with * are mandatory" textFill="RED">
+               <VBox.margin>
+                  <Insets left="155.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             <Button id="button" fx:id="registerButton" defaultButton="true" mnemonicParsing="false" onAction="#registerClick" prefHeight="26.0" prefWidth="200.0" text="Register" textFill="#f85649">
                <VBox.margin>
-                  <Insets left="150.0" top="20.0" />
+                  <Insets left="150.0" top="5.0" />
                </VBox.margin>
             </Button>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
