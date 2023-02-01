@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.exceptions.OrderException;
-import com.mysql.cj.xdevapi.Schema;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
+import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class LoginController {
 
@@ -87,6 +88,17 @@ public class LoginController {
             alert.showAndWait();
             return;
         }
+        closeLoginWindow(actionEvent);
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
+        HomeController homeController = new HomeController(usernameField.getText());
+        loader.setController(homeController);
+        newStage.setTitle("Home");
+        newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
+
+
     }
 
     public void switchToRegisterWindow(ActionEvent actionEvent) throws Exception{
@@ -94,7 +106,7 @@ public class LoginController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/register.fxml"));
         newStage.setTitle("Register");
-        newStage.setScene(new Scene(root, 500, 450));
+        newStage.setScene(new Scene(root, 500, 500));
         newStage.setResizable(false);
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
