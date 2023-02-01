@@ -66,6 +66,34 @@ public class RegisterController {
     public PasswordField passwordField;
     public PasswordField confirmedPasswordField;
     public Button registerButton;
+    @FXML
+    public void initialize() {
+        // does not accept empty string, numbers and special characters
+        addListenerToField(nameField,checkName,"Name is invalid","Name","^[a-zA-Z\\s]+");
+        // does not accept empty string, numbers and special characters
+        addListenerToField(surnameField,checkSurname,"Surname is invalid","Surname","^[a-zA-Z\\s]+");
+        // accepts characters a-z, A-Z, 0-9, dots, dashes and underscores
+        addListenerToField(usernameField,checkUsername,"Username is invalid","Username","^[a-zA-Z0-9._-]+");
+        // accepts numbers only
+        addListenerToField(telephoneNumberField,checkTelephoneNumber,"Enter numbers only","Telephone Number","^[0-9]+$");
+        // does not accept white-space character
+        addListenerToField(passwordField,checkPassword,"Password cannot contain spaces","Password","\\S+");
+        // accepts characters a-z, A-Z, 0-9, dots, dashes and underscores
+        emailField.textProperty().addListener(((observableValue, o, n) -> {
+            if(n.isEmpty())
+                setFieldValid(emailField,checkEmail);
+            else {
+                if (!n.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                    setFieldInvalid(emailField, checkEmail, "Email has invalid format");
+                } else
+                    setFieldValid(emailField, checkEmail);
+            }
+        }));
+        confirmedPasswordField.textProperty().addListener(((observableValue, o, n) -> {
+            confirmedPasswordField.getStyleClass().removeAll("fieldIsEmpty");
+            checkConfirmedPassword.setText("");
+        }));
+    }
 
     public void registerClick(ActionEvent actionEvent) {
     }
