@@ -22,7 +22,7 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
         try {
             this.tableName = tableName;
             Properties properties=new Properties();
-            FileReader reader=new FileReader(".idea/db.properties");
+            FileReader reader=new FileReader("src/main/resources/db.properties");
             properties.load(reader);
             String url = properties.getProperty("connection");
             String username = properties.getProperty("username");
