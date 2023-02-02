@@ -129,7 +129,23 @@ public class RegisterController {
             checkConfirmedPassword.setText("Passwords do not match");
             return;
         }
-
+        try {
+            User user = new User();
+            user.setName(nameField.getText());
+            user.setSurname(surnameField.getText());
+            user.setUsername(usernameField.getText());
+            if(!emailField.getText().isEmpty())
+                user.setEmail(emailField.getText());
+            user.setTelephoneNumber(telephoneNumberField.getText());
+            if(!addressField.getText().isEmpty())
+                user.setAddress(addressField.getText());
+            user.setPassword(passwordField.getText());
+            userManager.add(user);
+        }
+        catch (OrderException e){
+            new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
+            return;
+        }
 
     }
 
