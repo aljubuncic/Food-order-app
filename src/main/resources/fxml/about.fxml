@@ -14,5 +14,12 @@
          </BorderPane.margin>
       </Label>
    </top>
+   <bottom>
+      <Label text="Copyright (c) 2022-2023 Ahmed Ljubunčić" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </bottom>
 
 </BorderPane>
