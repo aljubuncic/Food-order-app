@@ -34,5 +34,13 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
-
+    public void clickAbout(ActionEvent actionEvent) throws Exception{
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
+        newStage.setTitle("About");
+        newStage.setScene(new Scene(root, 300, 100));
+        newStage.setResizable(false);
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
+    }
 }
