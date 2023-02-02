@@ -21,5 +21,11 @@
          </BorderPane.margin>
       </Label>
    </bottom>
-
+   <center>
+      <Hyperlink text="https://github.com/aljubuncic/Food-order-app" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Hyperlink>
+   </center>
 </BorderPane>
