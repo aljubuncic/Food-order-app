@@ -1,19 +1,21 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.UserManager;
+import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.OrderException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class RegisterController {
+
+    private UserManager userManager = new UserManager();
 
     private void closeRegisterWindow(ActionEvent actionEvent){
         Node node = (Node) actionEvent.getSource();
@@ -96,6 +98,39 @@ public class RegisterController {
     }
 
     public void registerClick(ActionEvent actionEvent) {
+        if(!matchesRegex(nameField.getText(),"^[a-zA-Z\\s]+",nameField,checkName,"Name","Name is invalid")) {
+            nameField.requestFocus();
+            return;
+        }
+        if(!matchesRegex(surnameField.getText(),"^[a-zA-Z\\s]+",surnameField,checkSurname,"Surname","Surname is invalid")) {
+            surnameField.requestFocus();
+            return;
+        }
+        if(!matchesRegex(usernameField.getText(),"^[a-zA-Z0-9._-]+",usernameField,checkUsername,"Username","Username is invalid")) {
+            usernameField.requestFocus();
+            return;
+        }
+        if(!emailField.getText().isEmpty() && !emailField.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
+            emailField.requestFocus();
+            emailField.getStyleClass().add("fieldIsEmpty");
+            checkEmail.setText("Email has invalid format");
+        }
+        if(!matchesRegex(telephoneNumberField.getText(),"^[0-9]+$",telephoneNumberField,checkTelephoneNumber,"Telephone number","Enter numbers only")) {
+            telephoneNumberField.requestFocus();
+            return;
+        }
+        if(!matchesRegex(passwordField.getText(),"^\\S+",passwordField,checkPassword,"Password","Password cannot contain spaces")){
+            passwordField.requestFocus();
+            return;
+        }
+        if(!confirmedPasswordField.getText().equals(passwordField.getText())){
+            confirmedPasswordField.requestFocus();
+            confirmedPasswordField.getStyleClass().add("fieldIsEmpty");
+            checkConfirmedPassword.setText("Passwords do not match");
+            return;
+        }
+
+
     }
 
     public void switchToLoginWindow(ActionEvent actionEvent) throws Exception{
