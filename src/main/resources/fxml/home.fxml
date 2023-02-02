@@ -82,5 +82,15 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <TableView BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn minWidth="75.0" prefWidth="-1.0" text="Name" />
+          <TableColumn minWidth="75.0" prefWidth="-1.0" text="Price" />
+            <TableColumn minWidth="101.5999755859375" prefWidth="-1.0" text="Quantity (grams)" />
+            <TableColumn minWidth="75.0" prefWidth="-1.0" text="Type" />
+        </columns>
+      </TableView>
+   </center>
 
 </BorderPane>
