@@ -24,4 +24,16 @@ public class UserManager {
     public User getByUsername(String username) throws OrderException {
         return DaoFactory.userDao().getByUsername(username);
     }
+    public User add(User user) throws OrderException {
+        try {
+            return DaoFactory.userDao().add(user);
+        } catch (OrderException e) {
+            if (e.getMessage().contains("UNIQUE")) {
+                int beginIndex = e.getMessage().indexOf('.') + 1;
+                int endIndex = e.getMessage().indexOf('_');
+                throw new OrderException("User with the same " + e.getMessage().substring(beginIndex, endIndex) + " already exists");
+            }
+        }
+        return null;
+    }
 }

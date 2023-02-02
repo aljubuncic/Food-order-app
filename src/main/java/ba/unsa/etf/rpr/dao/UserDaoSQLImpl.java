@@ -40,6 +40,7 @@ public class UserDaoSQLImpl extends AbstractDao<User>implements UserDao{
         item.put("id",object.getId());
         item.put("name",object.getName());
         item.put("surname",object.getSurname());
+        item.put("username",object.getUsername());
         item.put("email",object.getEmail());
         item.put("password",object.getPassword());
         item.put("address",object.getAddress());
