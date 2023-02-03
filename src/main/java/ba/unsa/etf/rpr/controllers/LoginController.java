@@ -19,20 +19,47 @@ public class LoginController {
 
     private UserManager userManager = new UserManager();
 
+    /**
+     * Closes the login window
+     * @param actionEvent
+     */
     private void closeLoginWindow(ActionEvent actionEvent){
         Node node = (Node) actionEvent.getSource();
         Stage oldStage = (Stage) node.getScene().getWindow();
         oldStage.close();
     }
+
+    /**
+     * Sets the field invalid (adds red border on the text field and warning text beneath)
+     * @param textField
+     * @param checkLabel
+     * @param errorMessage
+     */
     private void setFieldInvalid(TextField textField, Label checkLabel, String errorMessage) {
         textField.getStyleClass().add("fieldIsEmpty");
         checkLabel.setText(errorMessage);
     }
+
+    /**
+     * Sets the field valid (removes red border on the text field and warning text beneath)
+     * @param textField
+     * @param checkLabel
+     */
     private void setFieldValid(TextField textField, Label checkLabel) {
         textField.getStyleClass().removeAll("fieldIsEmpty");
         checkLabel.setText("");
     }
 
+    /**
+     * Checks if the string n matches regex and sets the responding field valid or invalid
+     * @param n
+     * @param regex
+     * @param textField
+     * @param checkLabel
+     * @param fieldName
+     * @param errorMessage
+     * @return
+     */
     private boolean matchesRegex(String n,String regex,TextField textField, Label checkLabel,String fieldName,String errorMessage){
         if(!n.matches(regex)) {
             if (n.isEmpty()) {
@@ -45,6 +72,14 @@ public class LoginController {
         return true;
     }
 
+    /**
+     * Adds listener to the specified text field and checks its validity in real time
+     * @param textField
+     * @param checkLabel
+     * @param errorMessage
+     * @param fieldName
+     * @param regex
+     */
     private void addListenerToField(TextField textField, Label checkLabel, String errorMessage,String fieldName,String regex){
         textField.textProperty().addListener(((observableValue, o, n) -> {
             if(matchesRegex(n,regex,textField,checkLabel,fieldName,errorMessage))
@@ -64,6 +99,11 @@ public class LoginController {
         addListenerToField(passwordField,checkPassword,"Password cannot contain spaces","Password","^\\S+");
     }
 
+    /**
+     * Validates login credentials and opens a home window of a specified user (if exists in teh database)
+     * @param actionEvent
+     * @throws IOException
+     */
     public void loginClick(ActionEvent actionEvent) throws IOException {
         if(!matchesRegex(usernameField.getText(),"^[a-zA-Z0-9._-]+",usernameField,checkUsername,"Username","Username is invalid")) {
             usernameField.requestFocus();
@@ -101,6 +141,11 @@ public class LoginController {
 
     }
 
+    /**
+     * Switches from the login window to the register window
+     * @param actionEvent
+     * @throws Exception
+     */
     public void switchToRegisterWindow(ActionEvent actionEvent) throws Exception{
         closeLoginWindow(actionEvent);
         Stage newStage = new Stage();
