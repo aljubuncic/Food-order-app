@@ -61,7 +61,7 @@ public class HomeController {
         }
     }
     /**
-     * fetches meals from database
+     * Fetches meals from database
      */
     private void refreshMeals(){
         try{
@@ -72,6 +72,12 @@ public class HomeController {
             new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE).showAndWait();
         }
     }
+
+    /**
+     * Opens a new window - About app section
+     * @param actionEvent
+     * @throws Exception
+     */
     public void clickAbout(ActionEvent actionEvent) throws Exception{
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
