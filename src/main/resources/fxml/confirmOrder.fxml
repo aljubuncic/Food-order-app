@@ -123,4 +123,15 @@
          </BorderPane.margin>
       </Label>
    </top>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button mnemonicParsing="false" text="Go back" />
+          <Button defaultButton="true" mnemonicParsing="false" text="Order" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
 </BorderPane>
