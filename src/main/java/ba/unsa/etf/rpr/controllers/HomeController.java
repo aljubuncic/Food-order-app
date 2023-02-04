@@ -21,13 +21,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class HomeController {
     private final UserManager userManager= new UserManager();
     private final MealManager mealManager = new MealManager();
     public Label usernameLabel;
     public Label nameLabel;
     public Label surnameLabel;
+    public ListView cartList;
     private String username;
+    private List<Meal> selectedMeals;
     @FXML
     private TableView<Meal> mealsTable;
     @FXML
@@ -41,6 +49,7 @@ public class HomeController {
 
     public HomeController(String username) {
         this.username = username;
+        selectedMeals = new LinkedList<>();
     }
 
     @FXML
@@ -60,6 +69,18 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Adds a selected item (meal) from tableview to list of meals and meals name, quantity and price to listview (cart)
+     * @param actionEvent
+     */
+    public void addToCartClick(ActionEvent actionEvent){
+        Meal meal = mealsTable.getSelectionModel().getSelectedItem();
+        selectedMeals.add(meal);
+        StringBuilder builder = new StringBuilder();
+        builder.append(meal.getName()).append(" ").append(meal.getQuantity()).append("gr ").append(meal.getPrice()).append(" KM");
+        cartList.getItems().add(builder);
+    }
+
     /**
      * Fetches meals from database
      */
