@@ -82,6 +82,22 @@ public class HomeController {
     }
 
     /**
+     * Removes an item from listview (cart) and corresponding meal from list of meals
+     * @param actionEvent
+     */
+    public void removeFromCartClick(ActionEvent actionEvent) {
+        int selectedIndex = cartList.getSelectionModel().getSelectedIndex();
+        if(selectedIndex==-1)
+            return;
+        String selectedListRow = cartList.getSelectionModel().getSelectedItem().toString();
+        String nameAndQuantity = selectedListRow.substring(0,selectedListRow.indexOf('g'));
+        int lastIndexOfSpace = nameAndQuantity.lastIndexOf(' ')-1;
+        String name = nameAndQuantity.substring(0,lastIndexOfSpace+1);
+        int quantity = Integer.parseInt(nameAndQuantity.substring(lastIndexOfSpace+2));
+        selectedMeals.removeIf(meal -> meal.getName().equals(name) && meal.getQuantity()==quantity);
+        cartList.getItems().remove(selectedIndex);
+    }
+    /**
      * Fetches meals from database
      */
     private void refreshMeals(){
