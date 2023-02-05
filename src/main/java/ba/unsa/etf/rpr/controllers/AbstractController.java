@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.domain.Meal;
+import ba.unsa.etf.rpr.domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 /**
  * Abstract class which implements usual methods for controller classes
@@ -104,5 +107,20 @@ public abstract class AbstractController {
         stage.setResizable(false);
         stage.getIcons().add(new Image("img/iconOnWindow.png"));
         stage.show();
+    }
+    /**
+     * Opens a home window of specified user
+     * @param user
+     * @throws IOException
+     */
+    protected void openHomeWindow(User user) throws IOException {
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
+        HomeController homeController = new HomeController(user);
+        loader.setController(homeController);
+        newStage.setTitle("Home");
+        newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
     }
 }
