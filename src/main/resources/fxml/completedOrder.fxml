@@ -74,5 +74,26 @@
          </children>
       </HBox>
    </bottom>
-
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Thanks for choosing our service!">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="65.0" />
+               </VBox.margin>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Bon_Appétit_logo.svg.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="125.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
