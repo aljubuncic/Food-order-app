@@ -93,6 +93,7 @@ public class ConfirmOrderController extends AbstractController{
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
             return;
         }
+        closeWindow(actionEvent);
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/completedOrder.fxml"));
         CompletedOrderController controller = new CompletedOrderController(order.getId(),user);
