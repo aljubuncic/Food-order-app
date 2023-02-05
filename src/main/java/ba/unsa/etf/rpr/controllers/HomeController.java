@@ -131,4 +131,26 @@ public class HomeController {
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
     }
+
+    /**
+     * Opens a window of order confirmation with some additional options before the order
+     * Opens an alert window if the cart is empty
+     * @param actionEvent
+     * @throws Exception
+     */
+    public void proceedToOrderClick(ActionEvent actionEvent) throws Exception {
+        if(selectedMeals.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Cart is empty", ButtonType.OK).showAndWait();
+            return;
+        }
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/confirmOrder.fxml"));
+        ConfirmOrderController controller = new ConfirmOrderController(selectedMeals,user);
+        loader.setController(controller);
+        newStage.setTitle("Confirmation of order");
+        newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        newStage.setResizable(false);
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
+    }
 }
