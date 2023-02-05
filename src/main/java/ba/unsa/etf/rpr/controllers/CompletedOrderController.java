@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class CompletedOrderController {
+import java.io.IOException;
+
+public class CompletedOrderController extends AbstractController{
     public Label orderID;
     private final int orderId;
     private final User user;
@@ -18,7 +20,9 @@ public class CompletedOrderController {
         orderID.setText(String.valueOf(orderId));
     }
 
-    public void logoutClick(ActionEvent actionEvent) {
+    public void logoutClick(ActionEvent actionEvent) throws IOException {
+        closeWindow(actionEvent);
+        openLoginWindow();
     }
 
     public void homeClick(ActionEvent actionEvent) {
