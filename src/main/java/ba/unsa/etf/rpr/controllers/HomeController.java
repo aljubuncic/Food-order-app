@@ -96,12 +96,7 @@ public class HomeController {
             new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
             return;
         }
-        String selectedListRow = cartList.getSelectionModel().getSelectedItem().toString();
-        String nameAndQuantity = selectedListRow.substring(0,selectedListRow.indexOf('g'));
-        int lastIndexOfSpace = nameAndQuantity.lastIndexOf(' ')-1;
-        String name = nameAndQuantity.substring(0,lastIndexOfSpace+1);
-        int quantity = Integer.parseInt(nameAndQuantity.substring(lastIndexOfSpace+2));
-        selectedMeals.removeIf(meal -> meal.getName().equals(name) && meal.getQuantity()==quantity);
+        selectedMeals.remove(selectedIndex);
         cartList.getItems().remove(selectedIndex);
     }
     /**
