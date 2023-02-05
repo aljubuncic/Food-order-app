@@ -103,6 +103,7 @@ public class RegisterController extends AbstractController {
             checkConfirmedPassword.setText("Passwords do not match");
             return;
         }
+        User addedUser;
         try {
             User user = new User();
             user.setName(nameField.getText());
@@ -114,7 +115,7 @@ public class RegisterController extends AbstractController {
             if(!addressField.getText().isEmpty())
                 user.setAddress(addressField.getText());
             user.setPassword(passwordField.getText());
-            userManager.add(user);
+            addedUser = userManager.add(user);
         }
         catch (OrderException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
@@ -124,7 +125,7 @@ public class RegisterController extends AbstractController {
         closeWindow(actionEvent);
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
-        HomeController homeController = new HomeController(usernameField.getText());
+        HomeController homeController = new HomeController(addedUser);
         loader.setController(homeController);
         newStage.setTitle("Home");
         newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

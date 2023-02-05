@@ -9,7 +9,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
  */
 
 public class UserManager {
-    public void validateLoginCredentials(String username, String password) throws OrderException {
+    public User validateLoginCredentials(String username, String password) throws OrderException {
         User user;
         try{
             user = DaoFactory.userDao().getByUsername(username);
@@ -19,6 +19,7 @@ public class UserManager {
         }
         if(!user.getPassword().equals(password))
             throw new OrderException("Incorrect password");
+        return user;
     }
 
     public User getByUsername(String username) throws OrderException {

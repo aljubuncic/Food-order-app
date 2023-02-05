@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.UserManager;
+import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,9 +46,9 @@ public class LoginController extends AbstractController {
             passwordField.requestFocus();
             return;
         }
-
+        User user;
         try {
-            userManager.validateLoginCredentials(usernameField.getText(),passwordField.getText());
+            user = userManager.validateLoginCredentials(usernameField.getText(),passwordField.getText());
         } catch (OrderException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login error");
@@ -63,7 +64,7 @@ public class LoginController extends AbstractController {
         closeWindow(actionEvent);
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
-        HomeController homeController = new HomeController(usernameField.getText());
+        HomeController homeController = new HomeController(user);
         loader.setController(homeController);
         newStage.setTitle("Home");
         newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

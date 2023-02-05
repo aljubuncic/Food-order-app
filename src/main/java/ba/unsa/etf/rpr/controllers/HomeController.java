@@ -43,10 +43,6 @@ public class HomeController extends AbstractController {
     @FXML
     private TableColumn<Meal, String> typeColumn;
 
-    public HomeController(String username) {
-        this.username = username;
-        cartList = new LinkedList<>();
-    }
     public HomeController(User user) {
         this.user=user;
         cartList = new LinkedList<>();
