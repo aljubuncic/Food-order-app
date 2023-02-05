@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class ConfirmOrderController extends AbstractController{
     private double priceOfOrder = 0;
     public RadioButton deliveryRadioButton;
@@ -76,5 +78,20 @@ public class ConfirmOrderController extends AbstractController{
         addListenerToRadioButton(sendEmailRadioButton,emailField,emailLabel,checkEmail);
         addListenerToField(addressField,checkAddress,"Invalid address","Address","\\S+");
         addListenerToField(emailField,checkEmail,"Invalid email","Email","^[A-Za-z0-9+_.-]+@(.+)$");
+    }
+    public void goBackClick(ActionEvent actionEvent) throws Exception {
+        closeWindow(actionEvent);
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
+        HomeController homeController = new HomeController(user);
+        loader.setController(homeController);
+        newStage.setTitle("Home");
+        newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        homeController.setCartList(orderList);
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
+    }
+    public void orderClick(ActionEvent actionEvent){
+
     }
 }
