@@ -47,6 +47,16 @@ public class HomeController extends AbstractController {
         this.username = username;
         cartList = new LinkedList<>();
     }
+    public HomeController(User user) {
+        this.user=user;
+        cartList = new LinkedList<>();
+    }
+    public void setCartList(List<Meal> cartList) {
+        this.cartList = cartList;
+        for (Meal meal : cartList) {
+            addMealToCartListView(cartListView,meal);
+        }
+    }
 
     @FXML
     public void initialize() {
@@ -56,14 +66,17 @@ public class HomeController extends AbstractController {
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
         refreshMeals();
 
-        usernameLabel.setText(username);
-        try {
-            user = userManager.getByUsername(username);
-            nameLabel.setText(user.getName());
-            surnameLabel.setText(user.getSurname());
-        } catch (OrderException e) {
-            throw new RuntimeException(e);
+        if(user==null) {
+            try {
+                user = userManager.getByUsername(username);
+            } catch (OrderException e) {
+                throw new RuntimeException(e);
+            }
         }
+        nameLabel.setText(user.getName());
+        usernameLabel.setText(user.getUsername());
+        surnameLabel.setText(user.getSurname());
+
     }
     /**
      * Adds a selected item (meal) from tableview to list of meals and meals name, quantity and price to listview (cart)
