@@ -36,6 +36,7 @@ public class HomeController {
     public ListView cartList;
     private String username;
     private List<Meal> selectedMeals;
+    private User user;
     @FXML
     private TableView<Meal> mealsTable;
     @FXML
@@ -62,7 +63,7 @@ public class HomeController {
 
         usernameLabel.setText(username);
         try {
-            User user = userManager.getByUsername(username);
+            user = userManager.getByUsername(username);
             nameLabel.setText(user.getName());
             surnameLabel.setText(user.getSurname());
         } catch (OrderException e) {
@@ -75,6 +76,10 @@ public class HomeController {
      */
     public void addToCartClick(ActionEvent actionEvent){
         Meal meal = mealsTable.getSelectionModel().getSelectedItem();
+        if(meal == null) {
+            new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
+            return;
+        }
         selectedMeals.add(meal);
         StringBuilder builder = new StringBuilder();
         builder.append(meal.getName()).append(" ").append(meal.getQuantity()).append("gr ").append(meal.getPrice()).append(" KM");
@@ -87,8 +92,10 @@ public class HomeController {
      */
     public void removeFromCartClick(ActionEvent actionEvent) {
         int selectedIndex = cartList.getSelectionModel().getSelectedIndex();
-        if(selectedIndex==-1)
+        if(selectedIndex==-1) {
+            new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
             return;
+        }
         String selectedListRow = cartList.getSelectionModel().getSelectedItem().toString();
         String nameAndQuantity = selectedListRow.substring(0,selectedListRow.indexOf('g'));
         int lastIndexOfSpace = nameAndQuantity.lastIndexOf(' ')-1;
