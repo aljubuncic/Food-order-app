@@ -58,4 +58,21 @@
          </children>
       </HBox>
    </top>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Logout">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="59.0" text="Home">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="280.0" right="3.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+
 </BorderPane>
