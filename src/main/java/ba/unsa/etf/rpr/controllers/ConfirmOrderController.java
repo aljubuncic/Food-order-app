@@ -25,7 +25,20 @@ public class ConfirmOrderController {
     public Label emailLabel;
     private List<Meal> orderList;
     private User user;
-
+    private void addListenerToRadioButton(RadioButton radioButton, TextField correspondingTextField,Label correspondingLabel){
+        radioButton.selectedProperty().addListener((observable ->{
+            if(radioButton.selectedProperty().getValue()) {
+                correspondingTextField.setEditable(true);
+                correspondingTextField.setDisable(false);
+                correspondingLabel.setDisable(false);
+            }
+            else {
+                correspondingTextField.setEditable(false);
+                correspondingTextField.setDisable(true);
+                correspondingLabel.setDisable(true);
+            }
+        }));
+    }
     public ConfirmOrderController(List<Meal> selectedMeals, User user){
         this.orderList = selectedMeals;
         this.user = user;
@@ -36,6 +49,10 @@ public class ConfirmOrderController {
             addressField.setText(user.getAddress());
         if(user.getEmail()!=null)
             emailField.setText(user.getEmail());
+        addressField.setDisable(true);
+        addressLabel.setDisable(true);
+        emailField.setDisable(true);
+        emailLabel.setDisable(true);
         for(Meal meal : orderList){
             priceOfOrder+= meal.getPrice();
             StringBuilder builder = new StringBuilder();
@@ -43,5 +60,8 @@ public class ConfirmOrderController {
             cartList.getItems().add(builder.toString());
         }
         priceOfOrderLabel.setText(priceOfOrder + " KM");
+
+        addListenerToRadioButton(deliveryRadioButton,addressField,addressLabel);
+        addListenerToRadioButton(sendEmailRadioButton,emailField,emailLabel);
     }
 }
