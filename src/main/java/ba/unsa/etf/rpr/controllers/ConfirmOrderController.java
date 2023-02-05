@@ -1,23 +1,25 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.Meal;
+import ba.unsa.etf.rpr.domain.Order;
 import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.OrderException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class ConfirmOrderController extends AbstractController{
+    private final OrderManager orderManager = new OrderManager();
     private double priceOfOrder = 0;
     public RadioButton deliveryRadioButton;
     public RadioButton sendEmailRadioButton;
@@ -91,7 +93,22 @@ public class ConfirmOrderController extends AbstractController{
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
     }
-    public void orderClick(ActionEvent actionEvent){
-
+    public void orderClick(ActionEvent actionEvent) throws IOException {
+        Order order;
+        try {
+            order = orderManager.add(user,orderList,priceOfOrder,emailField.getText(),addressField.getText());
+        } catch (OrderException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
+            return;
+        }
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/completedOrder.fxml"));
+        CompletedOrderController controller = new CompletedOrderController(order.getId());
+        loader.setController(controller);
+        newStage.setTitle("Order success");
+        newStage.setScene(new Scene(loader.load(), 400, 250));
+        newStage.setResizable(false);
+        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
+        newStage.show();
     }
 }

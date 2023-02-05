@@ -23,7 +23,7 @@ public class OrderManager {
      * @param address
      * @throws OrderException
      */
-    public void add (User user, List<Meal> orderList,double priceOfOrder,String confirmationEmail, String address) throws OrderException {
+    public Order add (User user, List<Meal> orderList,double priceOfOrder,String confirmationEmail, String address) throws OrderException {
         Order order = new Order();
         order.setUser(user);
         order.setDateOfOrder(new Date());
@@ -39,5 +39,6 @@ public class OrderManager {
             order_meal.setMeal(meal);
             DaoFactory.order_MealDao().add(order_meal);
         }
+        return order;
     }
 }
