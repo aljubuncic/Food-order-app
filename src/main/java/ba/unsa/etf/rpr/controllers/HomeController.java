@@ -27,7 +27,7 @@ import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class HomeController {
+public class HomeController extends AbstractController {
     private final UserManager userManager= new UserManager();
     private final MealManager mealManager = new MealManager();
     public Label usernameLabel;

@@ -17,77 +17,9 @@ import java.io.IOException;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class RegisterController {
+public class RegisterController extends AbstractController {
 
     private UserManager userManager = new UserManager();
-
-    /**
-     * Closes the register window
-     * @param actionEvent
-     */
-    private void closeRegisterWindow(ActionEvent actionEvent){
-        Node node = (Node) actionEvent.getSource();
-        Stage oldStage = (Stage) node.getScene().getWindow();
-        oldStage.close();
-    }
-
-    /**
-     * Sets the field invalid (adds red border on the text field and warning text beneath)
-     * @param textField
-     * @param checkLabel
-     * @param errorMessage
-     */
-    private void setFieldInvalid(TextField textField, Label checkLabel, String errorMessage) {
-            textField.getStyleClass().add("fieldIsEmpty");
-            checkLabel.setText(errorMessage);
-    }
-
-    /**
-     * Sets the field valid (removes red border on the text field and warning text beneath)
-     * @param textField
-     * @param checkLabel
-     */
-    private void setFieldValid(TextField textField, Label checkLabel) {
-        textField.getStyleClass().removeAll("fieldIsEmpty");
-        checkLabel.setText("");
-    }
-
-    /**
-     * Checks if the string n matches regex and sets the responding field valid or invalid
-     * @param n
-     * @param regex
-     * @param textField
-     * @param checkLabel
-     * @param fieldName
-     * @param errorMessage
-     * @return
-     */
-    private boolean matchesRegex(String n,String regex,TextField textField, Label checkLabel,String fieldName,String errorMessage){
-        if(!n.matches(regex)) {
-            if (n.isEmpty()) {
-                setFieldInvalid(textField, checkLabel,  fieldName + " is empty");
-            } else {
-                setFieldInvalid(textField, checkLabel, errorMessage);
-            }
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Adds listener to the specified text field and checks its validity in real time
-     * @param textField
-     * @param checkLabel
-     * @param errorMessage
-     * @param fieldName
-     * @param regex
-     */
-    private void addListenerToField(TextField textField, Label checkLabel, String errorMessage,String fieldName,String regex){
-        textField.textProperty().addListener(((observableValue, o, n) -> {
-            if(matchesRegex(n,regex,textField,checkLabel,fieldName,errorMessage))
-                setFieldValid(textField,checkLabel);
-        }));
-    }
 
     public Label checkName;
     public Label checkSurname;
@@ -189,7 +121,7 @@ public class RegisterController {
             return;
         }
         new Alert(Alert.AlertType.CONFIRMATION,"You have successfully registered!",ButtonType.OK).showAndWait();
-        closeRegisterWindow(actionEvent);
+        closeWindow(actionEvent);
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
         HomeController homeController = new HomeController(usernameField.getText());
@@ -206,7 +138,7 @@ public class RegisterController {
      * @throws Exception
      */
     public void switchToLoginWindow(ActionEvent actionEvent) throws Exception{
-        closeRegisterWindow(actionEvent);
+        closeWindow(actionEvent);
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/login.fxml"));
         newStage.setTitle("Login");

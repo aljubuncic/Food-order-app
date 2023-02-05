@@ -23,6 +23,8 @@ public class ConfirmOrderController {
     public Label priceOfOrderLabel;
     public Label addressLabel;
     public Label emailLabel;
+    public Label checkEmail;
+    public Label checkAddress;
     private List<Meal> orderList;
     private User user;
     private void addListenerToRadioButton(RadioButton radioButton, TextField correspondingTextField,Label correspondingLabel){
