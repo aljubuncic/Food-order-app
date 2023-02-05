@@ -123,14 +123,7 @@ public class RegisterController extends AbstractController {
         }
         new Alert(Alert.AlertType.CONFIRMATION,"You have successfully registered!",ButtonType.OK).showAndWait();
         closeWindow(actionEvent);
-        Stage newStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
-        HomeController homeController = new HomeController(addedUser);
-        loader.setController(homeController);
-        newStage.setTitle("Home");
-        newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
-        newStage.show();
+        openHomeWindow(addedUser);
     }
 
     /**
