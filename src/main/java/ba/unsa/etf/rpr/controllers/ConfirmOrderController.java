@@ -2,14 +2,16 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.domain.Meal;
 import ba.unsa.etf.rpr.domain.User;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class ConfirmOrderController extends AbstractController{
     public RadioButton sendEmailRadioButton;
     public TextField addressField;
     public TextField emailField;
-    public ListView cartList;
+    public ListView cartListView;
     public Label priceOfOrderLabel;
     public Label addressLabel;
     public Label emailLabel;
@@ -66,9 +68,7 @@ public class ConfirmOrderController extends AbstractController{
         emailLabel.setDisable(true);
         for(Meal meal : orderList){
             priceOfOrder+= meal.getPrice();
-            StringBuilder builder = new StringBuilder();
-            builder.append(meal.getName()).append(" ").append(meal.getQuantity()).append("gr ").append(meal.getPrice()).append(" KM");
-            cartList.getItems().add(builder.toString());
+            addMealToCartListView(cartListView,meal);
         }
         priceOfOrderLabel.setText(priceOfOrder + " KM");
 

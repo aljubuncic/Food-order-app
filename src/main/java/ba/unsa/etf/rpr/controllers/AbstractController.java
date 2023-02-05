@@ -1,8 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.domain.Meal;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -72,5 +74,16 @@ public abstract class AbstractController {
             if(matchesRegex(n,regex,textField,checkLabel,fieldName,errorMessage))
                 setFieldValid(textField,checkLabel);
         }));
+    }
+
+    /**
+     * Adds a meal in string format (name, quantity in grams, price in KM) to cart (ListView)
+     * @param cartListView
+     * @param meal
+     */
+    protected void addMealToCartListView(ListView cartListView, Meal meal) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(meal.getName()).append(" ").append(meal.getQuantity()).append("gr ").append(meal.getPrice()).append(" KM");
+        cartListView.getItems().add(builder.toString());
     }
 }

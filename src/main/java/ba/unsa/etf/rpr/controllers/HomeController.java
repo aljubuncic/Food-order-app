@@ -3,13 +3,9 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.MealManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.Meal;
-import ba.unsa.etf.rpr.domain.TypeOfMeal;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,9 +28,9 @@ public class HomeController extends AbstractController {
     public Label usernameLabel;
     public Label nameLabel;
     public Label surnameLabel;
-    public ListView cartList;
+    public ListView cartListView;
     private String username;
-    private List<Meal> selectedMeals;
+    private List<Meal> cartList;
     private User user;
     @FXML
     private TableView<Meal> mealsTable;
@@ -50,7 +45,7 @@ public class HomeController extends AbstractController {
 
     public HomeController(String username) {
         this.username = username;
-        selectedMeals = new LinkedList<>();
+        cartList = new LinkedList<>();
     }
 
     @FXML
@@ -80,10 +75,8 @@ public class HomeController extends AbstractController {
             new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
             return;
         }
-        selectedMeals.add(meal);
-        StringBuilder builder = new StringBuilder();
-        builder.append(meal.getName()).append(" ").append(meal.getQuantity()).append("gr ").append(meal.getPrice()).append(" KM");
-        cartList.getItems().add(builder);
+        cartList.add(meal);
+        addMealToCartListView(cartListView,meal);
     }
 
     /**
@@ -91,13 +84,13 @@ public class HomeController extends AbstractController {
      * @param actionEvent
      */
     public void removeFromCartClick(ActionEvent actionEvent) {
-        int selectedIndex = cartList.getSelectionModel().getSelectedIndex();
+        int selectedIndex = cartListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex==-1) {
             new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
             return;
         }
-        selectedMeals.remove(selectedIndex);
-        cartList.getItems().remove(selectedIndex);
+        cartList.remove(selectedIndex);
+        cartListView.getItems().remove(selectedIndex);
     }
     /**
      * Fetches meals from database
@@ -134,13 +127,14 @@ public class HomeController extends AbstractController {
      * @throws Exception
      */
     public void proceedToOrderClick(ActionEvent actionEvent) throws Exception {
-        if(selectedMeals.isEmpty()) {
+        if(cartList.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Cart is empty", ButtonType.OK).showAndWait();
             return;
         }
+        closeWindow(actionEvent);
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/confirmOrder.fxml"));
-        ConfirmOrderController controller = new ConfirmOrderController(selectedMeals,user);
+        ConfirmOrderController controller = new ConfirmOrderController(cartList,user);
         loader.setController(controller);
         newStage.setTitle("Confirmation of order");
         newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
