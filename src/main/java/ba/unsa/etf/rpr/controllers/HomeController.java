@@ -163,12 +163,6 @@ public class HomeController extends AbstractController {
      */
     public void logoutClick(ActionEvent actionEvent) throws Exception{
         closeWindow(actionEvent);
-        Stage newStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/login.fxml"));
-        newStage.setTitle("Login");
-        newStage.setScene(new Scene(root, 450, 400));
-        newStage.setResizable(false);
-        newStage.getIcons().add(new Image("img/iconOnWindow.png"));
-        newStage.show();
+        openLoginWindow();
     }
 }

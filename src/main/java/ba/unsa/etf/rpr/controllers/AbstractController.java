@@ -2,11 +2,17 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.domain.Meal;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * Abstract class which implements usual methods for controller classes
@@ -85,5 +91,18 @@ public abstract class AbstractController {
         StringBuilder builder = new StringBuilder();
         builder.append(meal.getName()).append(" ").append(meal.getQuantity()).append("gr ").append(meal.getPrice()).append(" KM");
         cartListView.getItems().add(builder.toString());
+    }
+    /**
+     * Opens a login window
+     * @throws IOException
+     */
+    protected void openLoginWindow() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/login.fxml"));
+        stage.setTitle("Login");
+        stage.setScene(new Scene(root, 450, 400));
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("img/iconOnWindow.png"));
+        stage.show();
     }
 }
