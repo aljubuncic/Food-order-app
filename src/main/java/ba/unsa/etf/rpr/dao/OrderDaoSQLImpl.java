@@ -22,6 +22,8 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
             order.getUser().setId(rs.getInt("idUser"));
             order.setDateOfOrder(rs.getDate("dateOfOrder"));
             order.setPrice(rs.getDouble("price"));
+            order.setConfirmationEmail(rs.getString("confirmationEmail"));
+            order.setAddress(rs.getString("address"));
             return order;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage());
@@ -35,6 +37,8 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
         item.put("idUser",object.getUser().getId());
         item.put("dateOfOrder",object.getDateOfOrder());
         item.put("price",object.getPrice());
+        item.put("confirmationEmail",object.getConfirmationEmail());
+        item.put("address",object.getAddress());
         return item;
     }
 
