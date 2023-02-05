@@ -10,14 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
             <VBox>
                <children>
-                  <Label text="Your order has been successfullly placed!" textFill="#1d9109">
+                  <Label text="Your order has been successfully placed!" textFill="#1d9109">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -61,12 +60,12 @@
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Logout">
+            <Button mnemonicParsing="false" onAction="#logoutClick" prefHeight="26.0" prefWidth="74.0" text="Logout">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="59.0" text="Home">
+            <Button mnemonicParsing="false" onAction="#homeClick" prefHeight="26.0" prefWidth="59.0" text="Home">
                <HBox.margin>
                   <Insets bottom="5.0" left="280.0" right="3.0" />
                </HBox.margin>
