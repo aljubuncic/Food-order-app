@@ -95,7 +95,7 @@ public class ConfirmOrderController extends AbstractController{
         }
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/completedOrder.fxml"));
-        CompletedOrderController controller = new CompletedOrderController(order.getId());
+        CompletedOrderController controller = new CompletedOrderController(order.getId(),user);
         loader.setController(controller);
         newStage.setTitle("Order success");
         newStage.setScene(new Scene(loader.load(), 400, 250));
