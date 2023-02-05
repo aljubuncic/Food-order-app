@@ -22,7 +22,7 @@
                   <Insets bottom="5.0" left="5.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <ListView fx:id="cartList" prefHeight="203.0" prefWidth="200.0" />
+            <ListView fx:id="cartListView" prefHeight="203.0" prefWidth="200.0" />
          </children>
          <BorderPane.margin>
             <Insets right="30.0" />

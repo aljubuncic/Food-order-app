@@ -76,7 +76,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ListView fx:id="cartList" prefHeight="278.0" prefWidth="248.0" />
+                  <ListView fx:id="cartListView" prefHeight="278.0" prefWidth="248.0" />
                </children>
             </VBox>
          </children>
