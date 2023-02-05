@@ -25,6 +25,8 @@ public class CompletedOrderController extends AbstractController{
         openLoginWindow();
     }
 
-    public void homeClick(ActionEvent actionEvent) {
+    public void homeClick(ActionEvent actionEvent) throws IOException {
+        closeWindow(actionEvent);
+        openHomeWindow(user);
     }
 }
