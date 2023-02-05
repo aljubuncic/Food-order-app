@@ -23,7 +23,7 @@
     -fx-border-color: #ef1f10;
     -fx-border-radius:25px;
 }
-.fieldIsEmpty{
+.fieldIsInvalid{
     -fx-border-color: red;
     -fx-border-width: 1.5px;
 }

@@ -13,7 +13,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class ConfirmOrderController {
+public class ConfirmOrderController extends AbstractController{
     private double priceOfOrder = 0;
     public RadioButton deliveryRadioButton;
     public RadioButton sendEmailRadioButton;
@@ -27,17 +27,26 @@ public class ConfirmOrderController {
     public Label checkAddress;
     private List<Meal> orderList;
     private User user;
-    private void addListenerToRadioButton(RadioButton radioButton, TextField correspondingTextField,Label correspondingLabel){
+
+    /**
+     * Adds listeners to radio buttons which sets the corresponding label and text field to disabled
+     * @param radioButton
+     * @param correspondingTextField
+     * @param correspondingLabel
+     */
+    private void addListenerToRadioButton(RadioButton radioButton, TextField correspondingTextField,Label correspondingLabel,Label correspondingCheckLabel){
         radioButton.selectedProperty().addListener((observable ->{
             if(radioButton.selectedProperty().getValue()) {
                 correspondingTextField.setEditable(true);
                 correspondingTextField.setDisable(false);
                 correspondingLabel.setDisable(false);
+                correspondingCheckLabel.setDisable(false);
             }
             else {
                 correspondingTextField.setEditable(false);
                 correspondingTextField.setDisable(true);
                 correspondingLabel.setDisable(true);
+                correspondingCheckLabel.setDisable(true);
             }
         }));
     }
@@ -63,7 +72,9 @@ public class ConfirmOrderController {
         }
         priceOfOrderLabel.setText(priceOfOrder + " KM");
 
-        addListenerToRadioButton(deliveryRadioButton,addressField,addressLabel);
-        addListenerToRadioButton(sendEmailRadioButton,emailField,emailLabel);
+        addListenerToRadioButton(deliveryRadioButton,addressField,addressLabel,checkAddress);
+        addListenerToRadioButton(sendEmailRadioButton,emailField,emailLabel,checkEmail);
+        addListenerToField(addressField,checkAddress,"Invalid address","Address","\\S+");
+        addListenerToField(emailField,checkEmail,"Invalid email","Email","^[A-Za-z0-9+_.-]+@(.+)$");
     }
 }
