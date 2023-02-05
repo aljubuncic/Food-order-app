@@ -93,15 +93,27 @@
       </TableView>
    </center>
    <bottom>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <buttons>
-            <Button mnemonicParsing="false" onAction="#removeFromCartClick" text="Remove from cart" />
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#addToCartClick" prefHeight="26.0" text="Add to cart" />
-          <Button mnemonicParsing="false" onAction="#proceedToOrderClick" text="Proceed to order" />
-        </buttons>
+      <HBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="5.0" />
          </BorderPane.margin>
-      </ButtonBar>
+         <children>
+            <Button mnemonicParsing="false" onAction="#logoutClick" prefHeight="25.6" prefWidth="80.0" text="Logout">
+               <HBox.margin>
+                  <Insets left="7.0" top="7.0" />
+               </HBox.margin>
+            </Button>
+            <ButtonBar prefHeight="40.0" prefWidth="420.0">
+              <buttons>
+                  <Button mnemonicParsing="false" onAction="#removeFromCartClick" text="Remove from cart" />
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#addToCartClick" prefHeight="26.0" text="Add to cart" />
+                <Button mnemonicParsing="false" onAction="#proceedToOrderClick" text="Proceed to order" />
+              </buttons>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </ButtonBar>
+         </children>
+      </HBox>
    </bottom>
 </BorderPane>
