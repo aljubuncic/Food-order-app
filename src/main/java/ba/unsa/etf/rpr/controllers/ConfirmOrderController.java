@@ -83,7 +83,7 @@ public class ConfirmOrderController extends AbstractController{
     }
     public void goBackClick(ActionEvent actionEvent) throws Exception {
         closeWindow(actionEvent);
-        openHomeWindow(user);
+        openHomeWindow(user,orderList);
     }
     public void orderClick(ActionEvent actionEvent) throws IOException {
         Order order;

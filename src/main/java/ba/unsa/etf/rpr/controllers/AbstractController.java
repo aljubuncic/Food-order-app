@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -109,17 +110,19 @@ public abstract class AbstractController {
         stage.show();
     }
     /**
-     * Opens a home window of specified user
+     * Opens a home window of specified user and populates the user's cart with the specified cartList (if not null)
      * @param user
      * @throws IOException
      */
-    protected void openHomeWindow(User user) throws IOException {
+    protected void openHomeWindow(User user, List<Meal> cartList) throws IOException {
         Stage newStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/home.fxml"));
         HomeController homeController = new HomeController(user);
         loader.setController(homeController);
         newStage.setTitle("Home");
         newStage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        if(cartList!=null)
+            homeController.setCartList(cartList);
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
     }

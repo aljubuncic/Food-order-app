@@ -62,7 +62,7 @@ public class LoginController extends AbstractController {
             return;
         }
         closeWindow(actionEvent);
-        openHomeWindow(user);
+        openHomeWindow(user,null);
     }
 
     /**

@@ -133,7 +133,7 @@ public class HomeController extends AbstractController {
 
     /**
      * Opens a window of order confirmation with some additional options before the order
-     * Opens an alert window if the cart is empty
+     * Opens an alert window if the cart is empty or user has not selected any drinks
      * @param actionEvent
      * @throws Exception
      */

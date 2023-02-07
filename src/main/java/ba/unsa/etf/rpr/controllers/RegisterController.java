@@ -123,7 +123,7 @@ public class RegisterController extends AbstractController {
         }
         new Alert(Alert.AlertType.CONFIRMATION,"You have successfully registered!",ButtonType.OK).showAndWait();
         closeWindow(actionEvent);
-        openHomeWindow(addedUser);
+        openHomeWindow(addedUser,null);
     }
 
     /**
