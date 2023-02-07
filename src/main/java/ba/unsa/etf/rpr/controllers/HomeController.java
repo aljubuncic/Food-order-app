@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.MealManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.Meal;
+import ba.unsa.etf.rpr.domain.TypeOfMeal;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -139,6 +141,24 @@ public class HomeController extends AbstractController {
         if(cartList.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Cart is empty", ButtonType.OK).showAndWait();
             return;
+        }
+        boolean listContainsDrink=false;
+        for(Meal meal : cartList)
+            if (meal.getType() == TypeOfMeal.Drink) {
+                listContainsDrink = true;
+                break;
+            }
+        if(!listContainsDrink){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("No drink selected");
+            alert.setHeaderText("You have not selected any drinks");
+            alert.setContentText("Do you want to proceed to order?");
+            alert.setResizable(false);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(!result.isPresent() || result.get() == ButtonType.CANCEL) {
+                alert.close();
+                return;
+            }
         }
         closeWindow(actionEvent);
         Stage newStage = new Stage();
