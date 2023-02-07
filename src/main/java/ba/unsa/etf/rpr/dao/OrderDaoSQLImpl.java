@@ -9,11 +9,15 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
-
-    public OrderDaoSQLImpl(){
+    private static OrderDaoSQLImpl instance = null;
+    private OrderDaoSQLImpl(){
         super("Orders");
     }
-
+    public static OrderDaoSQLImpl getInstance(){
+        if(instance == null)
+            instance = new OrderDaoSQLImpl();
+        return instance;
+    }
     @Override
     public Order rowToObject(ResultSet rs) throws OrderException {
         Order order=new Order();

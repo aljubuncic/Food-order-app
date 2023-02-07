@@ -6,10 +6,10 @@ package ba.unsa.etf.rpr.dao;
  */
 
 public class DaoFactory {
-    private static final UserDao userDao = new UserDaoSQLImpl();
-    private static final OrderDao orderDao = new OrderDaoSQLImpl();
-    private static final Order_MealDao order_MealDao = new Order_MealDaoSQLImpl();
-    private static final MealDao mealDao = new MealDaoSQLImpl();
+    private static final UserDao userDao = UserDaoSQLImpl.getInstance();
+    private static final OrderDao orderDao = OrderDaoSQLImpl.getInstance();
+    private static final Order_MealDao order_MealDao = Order_MealDaoSQLImpl.getInstance();
+    private static final MealDao mealDao = MealDaoSQLImpl.getInstance();
 
     private DaoFactory(){}
 

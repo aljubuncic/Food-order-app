@@ -9,9 +9,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Order_MealDao{
-
-    public Order_MealDaoSQLImpl(){
+    private static Order_MealDaoSQLImpl instance = null;
+    private Order_MealDaoSQLImpl(){
         super("Orders_Meals");
+    }
+    public static Order_MealDaoSQLImpl getInstance(){
+        if(instance == null)
+            instance = new Order_MealDaoSQLImpl();
+        return instance;
     }
     @Override
     public Order_Meal rowToObject(ResultSet rs) throws OrderException {
