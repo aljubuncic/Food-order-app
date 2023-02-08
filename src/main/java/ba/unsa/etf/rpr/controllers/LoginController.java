@@ -12,7 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.Properties;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -62,7 +65,13 @@ public class LoginController extends AbstractController {
             return;
         }
         closeWindow(actionEvent);
-        openHomeWindow(user,null);
+        Properties adminCredentials = new Properties();
+        FileReader fileReader = new FileReader("src/main/resources/admin.properties");
+        adminCredentials.load(fileReader);
+        if(user.getUsername().equals(adminCredentials.getProperty("username")) && user.getPassword().equals(adminCredentials.getProperty("password")))
+            System.out.println("Code for opening an admin panel");
+        else
+            openHomeWindow(user,null);
     }
 
     /**
