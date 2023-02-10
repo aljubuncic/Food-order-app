@@ -114,6 +114,16 @@ public class AdminPanelController extends AbstractController{
             new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
         }
     }
+    /**
+     * Creates an confirmation alert and returns true if user has confirmed deletion of object
+     * @param object
+     * @return
+     */
+    private boolean confirmationOfDelete(String object){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this " + object + "?",ButtonType.YES,ButtonType.CANCEL);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.YES;
+    }
 
     @FXML
     public void initialize(){
@@ -167,15 +177,13 @@ public class AdminPanelController extends AbstractController{
     }
 
     /**
-     * Deletes an order from tableview and database (with a confirmation alert)
+     * Deletes the selected order from tableview and database (with a confirmation alert)
      * @param actionEvent
      */
     public void deleteOrderClick(ActionEvent actionEvent) {
         if(!isAnyItemSelected(ordersTable.getSelectionModel().getSelectedIndex(),"No order selected"))
             return;
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this order?",ButtonType.YES,ButtonType.CANCEL);
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get()!=ButtonType.YES)
+        if(!confirmationOfDelete("order"))
             return;
         Order order = ordersTable.getSelectionModel().getSelectedItem();
         try{
@@ -206,13 +214,14 @@ public class AdminPanelController extends AbstractController{
 
     public void updateMealClick(ActionEvent actionEvent) {
     }
-
+    /**
+     * Deletes the selected meal from tableview and database (with a confirmation alert)
+     * @param actionEvent
+     */
     public void deleteMealClick(ActionEvent actionEvent) {
         if(!isAnyItemSelected(mealsTable.getSelectionModel().getSelectedIndex(),"No meal selected"))
             return;
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this meal?",ButtonType.YES,ButtonType.CANCEL);
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get()!=ButtonType.YES)
+        if (!confirmationOfDelete("meal"))
             return;
         try {
             Meal meal = mealsTable.getSelectionModel().getSelectedItem();
