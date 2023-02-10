@@ -72,7 +72,31 @@
                   </BorderPane>
                </content>
           </Tab>
-
+            <Tab text="Users">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="usersTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="userNameColumn" prefWidth="75.0" text="Name" />
+                            <TableColumn fx:id="surnameColumn" prefWidth="75.0" text="Surname" />
+                              <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
+                              <TableColumn fx:id="emailColumn" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="userAddressColumn" prefWidth="75.0" text="Address" />
+                              <TableColumn fx:id="telephoneNumberColumn" prefWidth="120.79998779296875" text="Telephone number" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <MenuBar BorderPane.alignment="CENTER">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="Delete" />
+                          </menus>
+                        </MenuBar>
+                     </top>
+                  </BorderPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </center>
