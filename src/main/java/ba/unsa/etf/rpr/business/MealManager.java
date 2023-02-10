@@ -12,4 +12,7 @@ public class MealManager {
     public List<Meal> getAll() throws OrderException {
         return DaoFactory.mealDao().getAll();
     }
+    public void delete(Meal meal) throws OrderException {
+        DaoFactory.mealDao().delete(meal.getId());
+    }
 }
