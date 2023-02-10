@@ -85,5 +85,16 @@ public class adminPanelController {
         }
     }
 
+    private void refreshUsers(){
+        try{
+            usersTable.setItems(FXCollections.observableList(userManager.getAll()));
+            usersTable.refresh();
+        }
+        catch (OrderException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
+        }
+    }
+
+
 
 }
