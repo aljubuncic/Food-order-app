@@ -69,4 +69,15 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
             throw new OrderException(e.getMessage());
         }
     }
+
+    @Override
+    public void deleteMeal(int idMeal) throws OrderException {
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("DELETE FROM Orders_Meals WHERE idMeal = ?");
+            statement.setObject(1,idMeal);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
+    }
 }

@@ -22,4 +22,11 @@ public interface Order_MealDao extends Dao<Order_Meal>{
      * @throws OrderException
      */
     public void deleteOrder(int idOrder) throws OrderException;
+
+    /**
+     * Deletes all rows associated with the specified meal
+     * @param idMeal
+     * @throws OrderException
+     */
+    public void deleteMeal(int idMeal) throws OrderException;
 }
