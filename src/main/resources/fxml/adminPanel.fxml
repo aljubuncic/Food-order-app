@@ -10,5 +10,45 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.adminPanelController">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Orders">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="ordersTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="userColumn" minWidth="20.0" prefWidth="100.0" text="User" />
+                            <TableColumn fx:id="dateOfOrderColumn" minWidth="20.0" prefWidth="100.0" text="Date of order" />
+                              <TableColumn fx:id="orderPriceColumn" minWidth="20.0" prefWidth="100.0" text="Price" />
+                              <TableColumn fx:id="confirmationEmailColumn" prefWidth="132.0" text="Confirmation email" />
+                              <TableColumn fx:id="orderAddressColumn" minWidth="20.0" prefWidth="100.0" text="Address" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <MenuBar BorderPane.alignment="CENTER">
+                          <menus>
+                              <Menu mnemonicParsing="false" onAction="#viewMealsClick" text="View meals">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="See user">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                </items>
+                              </Menu>
+                            <Menu mnemonicParsing="false" text="Delete" />
+                          </menus>
+                        </MenuBar>
+                     </top>
+                  </BorderPane>
+               </content>
+          </Tab>
 
+        </tabs>
+      </TabPane>
+   </center>
 </BorderPane>
