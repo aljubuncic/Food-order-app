@@ -75,6 +75,15 @@ public class adminPanelController {
         }
     }
 
+    private void refreshMeals(){
+        try{
+            mealsTable.setItems(FXCollections.observableList(mealManager.getAll()));
+            mealsTable.refresh();
+        }
+        catch (OrderException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
+        }
+    }
 
 
 }
