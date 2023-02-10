@@ -27,7 +27,7 @@ import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class AdminPanelController {
+public class AdminPanelController extends AbstractController{
     private final OrderManager orderManager = new OrderManager();
     private final MealManager mealManager = new MealManager();
     private final UserManager userManager = new UserManager();
@@ -171,10 +171,8 @@ public class AdminPanelController {
      * @param actionEvent
      */
     public void deleteOrderClick(ActionEvent actionEvent) {
-        if(ordersTable.getSelectionModel().getSelectedIndex()==-1) {
-            new Alert(Alert.AlertType.WARNING, "Please select an order", ButtonType.CLOSE);
+        if(!isAnyItemSelected(ordersTable.getSelectionModel().getSelectedIndex(),"No order selected"))
             return;
-        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this order?",ButtonType.YES,ButtonType.CANCEL);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get()!=ButtonType.YES)

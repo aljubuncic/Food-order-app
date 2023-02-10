@@ -63,14 +63,6 @@ public class HomeController extends AbstractController {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
         refreshMeals();
-
-        if(user==null) {
-            try {
-                user = userManager.getByUsername(username);
-            } catch (OrderException e) {
-                throw new RuntimeException(e);
-            }
-        }
         nameLabel.setText(user.getName());
         usernameLabel.setText(user.getUsername());
         surnameLabel.setText(user.getSurname());
@@ -81,11 +73,9 @@ public class HomeController extends AbstractController {
      * @param actionEvent
      */
     public void addToCartClick(ActionEvent actionEvent){
-        Meal meal = mealsTable.getSelectionModel().getSelectedItem();
-        if(meal == null) {
-            new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
+        if(!isAnyItemSelected(mealsTable.getSelectionModel().getSelectedIndex(),"Please select a meal"))
             return;
-        }
+        Meal meal = mealsTable.getSelectionModel().getSelectedItem();
         cartList.add(meal);
         addMealToCartListView(cartListView,meal);
     }
@@ -96,10 +86,8 @@ public class HomeController extends AbstractController {
      */
     public void removeFromCartClick(ActionEvent actionEvent) {
         int selectedIndex = cartListView.getSelectionModel().getSelectedIndex();
-        if(selectedIndex==-1) {
-            new Alert(Alert.AlertType.WARNING,"Please select a meal",ButtonType.OK).showAndWait();
+        if(!isAnyItemSelected(selectedIndex,"Please select a meal"))
             return;
-        }
         cartList.remove(selectedIndex);
         cartListView.getItems().remove(selectedIndex);
     }
