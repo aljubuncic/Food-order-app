@@ -65,6 +65,10 @@ public class adminPanelController {
     @FXML
     public TableColumn<User,String> telephoneNumberColumn;
 
+    /**
+     * fetches orders from database
+     */
+
     private void refreshOrders(){
         try{
             ordersTable.setItems(FXCollections.observableList(orderManager.getAll()));
@@ -75,6 +79,10 @@ public class adminPanelController {
         }
     }
 
+    /**
+     * fetches meals from database
+     */
+
     private void refreshMeals(){
         try{
             mealsTable.setItems(FXCollections.observableList(mealManager.getAll()));
@@ -84,6 +92,10 @@ public class adminPanelController {
             new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
         }
     }
+
+    /**
+     * fetches users from database
+     */
 
     private void refreshUsers(){
         try{
