@@ -41,6 +41,7 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
         item.put("idMeal",object.getMeal().getId());
         return item;
     }
+    @Override
     public List<Meal> getMealsFromOrder(Order order) throws OrderException {
         try{
             PreparedStatement statement = getConnection().prepareStatement("SELECT idMeal FROM Orders_Meals WHERE idOrder = ?");
@@ -55,6 +56,16 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
             return meals;
         }
         catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
+    }
+    @Override
+    public void deleteOrder(int idOrder) throws OrderException {
+        try{
+            PreparedStatement statement= getConnection().prepareStatement("DELETE FROM Orders_Meals WHERE idOrder = ?");
+            statement.setObject(1,idOrder);
+            statement.executeUpdate();
+        }catch (SQLException e){
             throw new OrderException(e.getMessage());
         }
     }
