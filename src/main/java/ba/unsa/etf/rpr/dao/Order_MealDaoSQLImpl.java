@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Order;
 import ba.unsa.etf.rpr.domain.Order_Meal;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -39,5 +40,22 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
         item.put("idOrder",object.getOrder().getId());
         item.put("idMeal",object.getMeal().getId());
         return item;
+    }
+    public List<Meal> getMealsFromOrder(Order order) throws OrderException {
+        try{
+            PreparedStatement statement = getConnection().prepareStatement("SELECT idMeal FROM Orders_Meals WHERE idOrder = ?");
+            statement.setObject(1,order.getId());
+            ResultSet queryResult = statement.executeQuery();
+            List<Meal> meals = new ArrayList<>();
+            while(queryResult.next()){
+                Meal meal = DaoFactory.mealDao().getById(queryResult.getInt("idMeal"));
+                meals.add(meal);
+            }
+            queryResult.close();
+            return meals;
+        }
+        catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
     }
 }
