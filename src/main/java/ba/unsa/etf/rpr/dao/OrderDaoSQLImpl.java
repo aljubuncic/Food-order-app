@@ -23,7 +23,7 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
         Order order=new Order();
         try {
             order.setId(rs.getInt("id"));
-            order.getUser().setId(rs.getInt("idUser"));
+            order.setUser(DaoFactory.userDao().getById(rs.getInt("idUser")));
             order.setDateOfOrder(rs.getDate("dateOfOrder"));
             order.setPrice(rs.getDouble("price"));
             order.setConfirmationEmail(rs.getString("confirmationEmail"));

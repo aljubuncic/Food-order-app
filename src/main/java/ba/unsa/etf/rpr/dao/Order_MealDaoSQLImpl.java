@@ -1,12 +1,13 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Meal;
+import ba.unsa.etf.rpr.domain.Order;
 import ba.unsa.etf.rpr.domain.Order_Meal;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Order_MealDao{
     private static Order_MealDaoSQLImpl instance = null;
@@ -23,8 +24,8 @@ public class Order_MealDaoSQLImpl extends AbstractDao<Order_Meal> implements Ord
         Order_Meal order_meal=new Order_Meal();
         try {
             order_meal.setId(rs.getInt("id"));
-            order_meal.getOrder().setId(rs.getInt("idOrder"));
-            order_meal.getMeal().setId(rs.getInt("idMeal"));
+            order_meal.setOrder(DaoFactory.orderDao().getById(rs.getInt("idOrder")));
+            order_meal.setMeal(DaoFactory.mealDao().getById(rs.getInt("idMeal")));
             return order_meal;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage());
