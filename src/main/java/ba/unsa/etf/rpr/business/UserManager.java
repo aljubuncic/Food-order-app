@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.util.List;
+
 /**
  * Business Logic Layer for management of Users
  */
@@ -36,5 +38,9 @@ public class UserManager {
             }
         }
         return null;
+    }
+
+    public List<User> getAll() throws OrderException {
+        return DaoFactory.userDao().getAll();
     }
 }
