@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.MealManager;
 import ba.unsa.etf.rpr.business.OrderManager;
+import ba.unsa.etf.rpr.business.Order_MealManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Meal;
@@ -20,11 +21,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class adminPanelController {
     private final OrderManager orderManager = new OrderManager();
     private final MealManager mealManager = new MealManager();
     private final UserManager userManager = new UserManager();
+    private final Order_MealManager orderMealManager = new Order_MealManager();
 
     @FXML
     public TableView<Order> ordersTable;
@@ -132,6 +135,42 @@ public class adminPanelController {
         refreshUsers();
     }
 
+    public void viewMealsClick(ActionEvent actionEvent) {
+        if(ordersTable.getSelectionModel().getSelectedIndex()==-1) {
+            new Alert(Alert.AlertType.WARNING, "No order selected", ButtonType.OK);
+            return;
+        }
+        Order order = ordersTable.getSelectionModel().getSelectedItem();
+        List<Meal> mealList;
+        try {
+            mealList = DaoFactory.order_MealDao().getMealsFromOrder(order);
+        } catch (OrderException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+            return;
+        }
+    }
 
-
+    /**
+     * Deletes an order from tableview and database (with a confirmation alert)
+     * @param actionEvent
+     */
+    public void deleteOrderClick(ActionEvent actionEvent) {
+        if(ordersTable.getSelectionModel().getSelectedIndex()==-1) {
+            new Alert(Alert.AlertType.WARNING, "Please select an order", ButtonType.CLOSE);
+            return;
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this order?",ButtonType.YES,ButtonType.CANCEL);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get()!=ButtonType.YES)
+            return;
+        Order order = ordersTable.getSelectionModel().getSelectedItem();
+        try{
+            orderMealManager.deleteOrder(order);
+            orderManager.delete(order);
+        }
+        catch(OrderException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+        }
+        refreshOrders();
+    }
 }
