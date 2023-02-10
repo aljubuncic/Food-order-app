@@ -95,6 +95,31 @@ public class adminPanelController {
         }
     }
 
+    @FXML
+    public void initialize(){
+        userColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUser().getUsername()));
+        dateOfOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty((cellData.getValue().getDateOfOrder().toString())));
+        orderPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        confirmationEmailColumn.setCellValueFactory(new PropertyValueFactory<>("confirmationEmail"));
+        orderAddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        mealNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        mealPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
+
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        userAddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        telephoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("telephoneNumber"));
+
+        refreshOrders();
+        refreshMeals();
+        refreshUsers();
+    }
+
 
 
 }
