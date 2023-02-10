@@ -189,4 +189,16 @@ public class AdminPanelController {
         }
         refreshOrders();
     }
+
+    /**
+     * Switches to users tab and selects and focuses a selected user in a users table
+     * @param actionEvent
+     */
+    public void viewUserClick(ActionEvent actionEvent) {
+        tabPane.getSelectionModel().select(2);
+        User user = ordersTable.getSelectionModel().getSelectedItem().getUser();
+        usersTable.getSelectionModel().select(user);
+        int index = usersTable.getSelectionModel().getSelectedIndex();
+        usersTable.getFocusModel().focus(index);
+    }
 }
