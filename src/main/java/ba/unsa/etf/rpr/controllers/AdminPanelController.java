@@ -9,21 +9,25 @@ import ba.unsa.etf.rpr.domain.Meal;
 import ba.unsa.etf.rpr.domain.Order;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-public class adminPanelController {
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
+public class AdminPanelController {
     private final OrderManager orderManager = new OrderManager();
     private final MealManager mealManager = new MealManager();
     private final UserManager userManager = new UserManager();
@@ -67,6 +71,7 @@ public class adminPanelController {
     public TableColumn<User,String> userAddressColumn;
     @FXML
     public TableColumn<User,String> telephoneNumberColumn;
+    public TabPane tabPane;
 
     /**
      * fetches orders from database
@@ -134,20 +139,31 @@ public class adminPanelController {
         refreshMeals();
         refreshUsers();
     }
-
-    public void viewMealsClick(ActionEvent actionEvent) {
+    /**
+     * Opens a new window which displays meals in a selected order
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void viewMealsClick(ActionEvent actionEvent) throws IOException {
         if(ordersTable.getSelectionModel().getSelectedIndex()==-1) {
             new Alert(Alert.AlertType.WARNING, "No order selected", ButtonType.OK);
             return;
         }
         Order order = ordersTable.getSelectionModel().getSelectedItem();
-        List<Meal> mealList;
+        List<Meal> orderList;
         try {
-            mealList = DaoFactory.order_MealDao().getMealsFromOrder(order);
+            orderList = DaoFactory.order_MealDao().getMealsFromOrder(order);
         } catch (OrderException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
             return;
         }
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/orderMealList.fxml"));
+        stage.setTitle("Order by " + order.getUser().getUsername() + " " + " on " + order.getDateOfOrder());
+        OrderMealListController controller = new OrderMealListController(orderList);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.getIcons().add(new Image("img/iconOnWindow.png"));
+        stage.show();
     }
 
     /**

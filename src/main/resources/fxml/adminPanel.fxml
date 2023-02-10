@@ -9,9 +9,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.adminPanelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminPanelController">
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Orders">
                <content>
@@ -33,7 +33,7 @@
                               <Menu mnemonicParsing="false" text="View">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#viewMealsClick" text="Meals" />
-                                    <MenuItem mnemonicParsing="false" text="User" />
+                                    <MenuItem mnemonicParsing="false" onAction="#viewUserClick" text="User" />
                                  </items>
                               </Menu>
                             <Menu mnemonicParsing="false" text="Edit">
