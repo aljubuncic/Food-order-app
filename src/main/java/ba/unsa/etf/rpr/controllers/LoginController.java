@@ -36,7 +36,7 @@ public class LoginController extends AbstractController {
     }
 
     /**
-     * Validates login credentials and opens a home window of a specified user (if exists in the database)
+     * Validates login credentials and opens a home window of a specified user (if exists in the database) or admin panel window
      * @param actionEvent
      * @throws IOException
      */
@@ -68,8 +68,14 @@ public class LoginController extends AbstractController {
         Properties adminCredentials = new Properties();
         FileReader fileReader = new FileReader("src/main/resources/admin.properties");
         adminCredentials.load(fileReader);
-        if(user.getUsername().equals(adminCredentials.getProperty("username")) && user.getPassword().equals(adminCredentials.getProperty("password")))
-            System.out.println("Code for opening an admin panel");
+        if(user.getUsername().equals(adminCredentials.getProperty("username")) && user.getPassword().equals(adminCredentials.getProperty("password"))){
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/adminPanel.fxml"));
+            stage.setTitle("Admin Panel");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.getIcons().add(new Image("img/iconOnWindow.png"));
+            stage.show();
+        }
         else
             openHomeWindow(user,null);
     }
