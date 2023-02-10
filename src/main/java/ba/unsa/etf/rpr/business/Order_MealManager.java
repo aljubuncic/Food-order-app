@@ -18,4 +18,7 @@ public class Order_MealManager {
     public void deleteOrder(Order order) throws OrderException{
         DaoFactory.order_MealDao().deleteOrder(order.getId());
     }
+    public void deleteMeal(Meal meal) throws OrderException{
+        DaoFactory.order_MealDao().deleteMeal(meal.getId());
+    }
 }
