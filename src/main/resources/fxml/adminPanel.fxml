@@ -62,9 +62,12 @@
                      <top>
                         <MenuBar BorderPane.alignment="CENTER">
                           <menus>
-                            <Menu mnemonicParsing="false" text="Add" />
-                            <Menu mnemonicParsing="false" text="Update" />
-                            <Menu mnemonicParsing="false" text="Delete" />
+                            <Menu mnemonicParsing="false" text="Edit">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#addMealClick" text="Add" />
+                                    <MenuItem mnemonicParsing="false" onAction="#updateMealClick" text="Update" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteMealClick" text="Delete" />
+                                 </items></Menu>
                           </menus>
                         </MenuBar>
                      </top>

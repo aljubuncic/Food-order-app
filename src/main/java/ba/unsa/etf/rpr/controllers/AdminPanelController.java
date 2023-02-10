@@ -158,7 +158,7 @@ public class AdminPanelController extends AbstractController{
             return;
         }
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/orderMealList.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/adminPanelWindows/orderMealList.fxml"));
         stage.setTitle("Order by " + order.getUser().getUsername() + " " + " on " + order.getDateOfOrder());
         OrderMealListController controller = new OrderMealListController(orderList);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
@@ -198,5 +198,30 @@ public class AdminPanelController extends AbstractController{
         usersTable.getSelectionModel().select(user);
         int index = usersTable.getSelectionModel().getSelectedIndex();
         usersTable.getFocusModel().focus(index);
+    }
+
+    public void addMealClick(ActionEvent actionEvent) {
+
+    }
+
+    public void updateMealClick(ActionEvent actionEvent) {
+    }
+
+    public void deleteMealClick(ActionEvent actionEvent) {
+        if(!isAnyItemSelected(mealsTable.getSelectionModel().getSelectedIndex(),"No meal selected"))
+            return;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this meal?",ButtonType.YES,ButtonType.CANCEL);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get()!=ButtonType.YES)
+            return;
+        try {
+            Meal meal = mealsTable.getSelectionModel().getSelectedItem();
+            orderMealManager.deleteMeal(meal);
+            mealManager.delete(meal);
+            refreshMeals();
+        }
+        catch (OrderException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+        }
     }
 }
