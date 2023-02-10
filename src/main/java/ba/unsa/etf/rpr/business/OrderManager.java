@@ -41,4 +41,7 @@ public class OrderManager {
         }
         return order;
     }
+    public List<Order> getAll() throws OrderException {
+        return DaoFactory.orderDao().getAll();
+    }
 }
