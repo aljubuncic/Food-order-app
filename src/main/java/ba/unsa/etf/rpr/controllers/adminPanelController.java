@@ -65,5 +65,16 @@ public class adminPanelController {
     @FXML
     public TableColumn<User,String> telephoneNumberColumn;
 
+    private void refreshOrders(){
+        try{
+            ordersTable.setItems(FXCollections.observableList(orderManager.getAll()));
+            ordersTable.refresh();
+        }
+        catch (OrderException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
+        }
+    }
+
+
 
 }
