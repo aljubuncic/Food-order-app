@@ -7,9 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -125,5 +123,18 @@ public abstract class AbstractController {
             homeController.setCartList(cartList);
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
+    }
+    /**
+     * Checks if any item is selected (usually from ListView or TableView)
+     * @param index
+     * @param errorMessage
+     * @return
+     */
+    protected boolean isAnyItemSelected(int index,String errorMessage){
+        if(index==-1) {
+            new Alert(Alert.AlertType.WARNING,errorMessage, ButtonType.OK).showAndWait();
+            return false;
+        }
+        return true;
     }
 }
