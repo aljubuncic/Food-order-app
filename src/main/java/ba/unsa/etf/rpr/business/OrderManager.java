@@ -44,4 +44,7 @@ public class OrderManager {
     public List<Order> getAll() throws OrderException {
         return DaoFactory.orderDao().getAll();
     }
+    public void delete(Order order) throws OrderException {
+        DaoFactory.orderDao().delete(order.getId());
+    }
 }
