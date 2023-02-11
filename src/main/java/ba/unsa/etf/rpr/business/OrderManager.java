@@ -48,4 +48,7 @@ public class OrderManager {
         new Order_MealManager().deleteOrder(order);
         DaoFactory.orderDao().delete(order.getId());
     }
+    public List<Order> getByUser(User user) throws OrderException {
+        return DaoFactory.orderDao().getByUser(user);
+    }
 }
