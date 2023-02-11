@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.MealManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.Meal;
-import ba.unsa.etf.rpr.domain.TypeOfMeal;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 import javafx.beans.property.SimpleStringProperty;
@@ -61,7 +60,7 @@ public class HomeController extends AbstractController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
+        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
         refreshMeals();
         nameLabel.setText(user.getName());
         usernameLabel.setText(user.getUsername());
@@ -132,7 +131,7 @@ public class HomeController extends AbstractController {
         }
         boolean listContainsDrink=false;
         for(Meal meal : cartList)
-            if (meal.getType() == TypeOfMeal.Drink) {
+            if (meal.getType().equals("Drink")) {
                 listContainsDrink = true;
                 break;
             }

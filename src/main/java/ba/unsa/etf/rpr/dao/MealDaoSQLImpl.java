@@ -29,7 +29,7 @@ public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
             meal.setName(rs.getString("name"));
             meal.setPrice(rs.getDouble("price"));
             meal.setQuantity(rs.getInt("quantity"));
-            meal.setType(rs.getString("type"));
+            meal.setType((rs.getString("type")));
             return meal;
         }catch(Exception e){
             throw new OrderException(e.getMessage());

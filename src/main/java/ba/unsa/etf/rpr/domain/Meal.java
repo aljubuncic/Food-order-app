@@ -12,7 +12,7 @@ public class Meal implements Identifiable{
     private double price;
     private int quantity;
 
-    private TypeOfMeal typeOfMeal;
+    private String typeOfMeal;
 
     public int getId() {
         return id;
@@ -34,7 +34,7 @@ public class Meal implements Identifiable{
         return price;
     }
 
-   public TypeOfMeal getType() {
+   public String getType() {
         return typeOfMeal;
     }
 
@@ -51,7 +51,7 @@ public class Meal implements Identifiable{
     }
 
     public void setType(String typeOfMeal){
-        this.typeOfMeal= TypeOfMeal.valueOf(typeOfMeal);
+        this.typeOfMeal= typeOfMeal;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Meal implements Identifiable{
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
-                ", typeOfMeal=" + typeOfMeal.toString() +
+                ", typeOfMeal=" + typeOfMeal +
                 '}';
     }
 
@@ -70,7 +70,7 @@ public class Meal implements Identifiable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meal meal = (Meal) o;
-        return id == meal.id && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name) && typeOfMeal == meal.typeOfMeal;
+        return id == meal.id && Double.compare(meal.price, price) == 0 && quantity == meal.quantity && name.equals(meal.name) && typeOfMeal.equals(meal.typeOfMeal);
     }
 
     @Override
