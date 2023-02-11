@@ -115,10 +115,17 @@
                         </Hyperlink>
                      </children>
                   </HBox>
-                  <Button fx:id="exitButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="40.0" prefWidth="40.0">
+                  <Button maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#exitClick" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>

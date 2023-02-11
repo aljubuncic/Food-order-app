@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -134,5 +135,10 @@ public class RegisterController extends AbstractController {
     public void switchToLoginWindow(ActionEvent actionEvent) throws Exception{
         closeWindow(actionEvent);
         openLoginWindow();
+    }
+
+    public void exitClick(ActionEvent actionEvent) {
+        Platform.exit();
+        System.exit(0);
     }
 }

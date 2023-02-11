@@ -32,14 +32,8 @@ public class LoginController extends AbstractController {
 
     public Label checkUsername;
     public Label checkPassword;
-    public Button exitButton;
     @FXML
     public void initialize(){
-        ImageView view = new ImageView(new Image("img/exit.png"));
-        view.setFitHeight(40);
-        view.setFitWidth(40);
-        view.setPreserveRatio(true);
-        exitButton.setGraphic(view);
         addListenerToField(usernameField,checkUsername,"Username is invalid","Username","^[a-zA-Z0-9._-]+");
         addListenerToField(passwordField,checkPassword,"Password cannot contain spaces","Password","^\\S+");
     }
