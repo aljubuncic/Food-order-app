@@ -1,11 +1,13 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Order;
+import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
@@ -61,6 +63,24 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
             queryResult.close();
             return orders;
         }catch (SQLException e){
+            throw new OrderException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Order> getByUser(User user) throws OrderException {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM Orders WHERE idUser = ?");
+            statement.setObject(1, user.getId());
+            ResultSet queryResult = statement.executeQuery();
+            List<Order> orders = new ArrayList<>();
+            while (queryResult.next()) {
+                Order object = rowToObject(queryResult);
+                orders.add(object);
+            }
+            queryResult.close();
+            return orders;
+        } catch (SQLException e) {
             throw new OrderException(e.getMessage());
         }
     }
