@@ -15,4 +15,10 @@ public class MealManager {
     public void delete(Meal meal) throws OrderException {
         DaoFactory.mealDao().delete(meal.getId());
     }
+    public Meal add(Meal meal) throws OrderException {
+        return DaoFactory.mealDao().add(meal);
+    }
+    public Meal update(Meal meal) throws OrderException {
+        return DaoFactory.mealDao().update(meal);
+    }
 }
