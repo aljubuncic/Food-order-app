@@ -227,6 +227,8 @@ public class AdminPanelController extends AbstractController{
      * @param actionEvent
      */
     public void viewUserClick(ActionEvent actionEvent) {
+        if(!isAnyItemSelected(ordersTable.getSelectionModel().getSelectedIndex(),"No order selected"))
+            return;
         tabPane.getSelectionModel().select(2);
         User user = ordersTable.getSelectionModel().getSelectedItem().getUser();
         usersTable.getSelectionModel().select(user);
@@ -234,8 +236,13 @@ public class AdminPanelController extends AbstractController{
         usersTable.getFocusModel().focus(index);
     }
 
-    public void addMealClick(ActionEvent actionEvent) {
-
+    /**
+     * Event handler for menu item add
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void addMealClick(ActionEvent actionEvent) throws IOException {
+        openEditMeal(null);
     }
 
     public void updateMealClick(ActionEvent actionEvent) {
