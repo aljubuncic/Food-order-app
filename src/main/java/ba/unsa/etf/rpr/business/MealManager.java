@@ -13,6 +13,7 @@ public class MealManager {
         return DaoFactory.mealDao().getAll();
     }
     public void delete(Meal meal) throws OrderException {
+        new Order_MealManager().deleteMeal(meal);
         DaoFactory.mealDao().delete(meal.getId());
     }
     public Meal add(Meal meal) throws OrderException {

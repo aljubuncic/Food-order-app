@@ -267,14 +267,14 @@ public class AdminPanelController extends AbstractController{
             return;
         if (!confirmationOfDelete("meal"))
             return;
+        Meal meal = mealsTable.getSelectionModel().getSelectedItem();
         try {
-            Meal meal = mealsTable.getSelectionModel().getSelectedItem();
-            orderMealManager.deleteMeal(meal);
             mealManager.delete(meal);
             refreshMeals();
         }
         catch (OrderException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
         }
+        new Alert(Alert.AlertType.INFORMATION,meal.getName() + " successfully deleted",ButtonType.OK).showAndWait();
     }
 }
