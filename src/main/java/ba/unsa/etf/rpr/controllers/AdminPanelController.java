@@ -245,7 +245,15 @@ public class AdminPanelController extends AbstractController{
         openEditMeal(null);
     }
 
-    public void updateMealClick(ActionEvent actionEvent) {
+    /**
+     * Event handler for menu item update
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void updateMealClick(ActionEvent actionEvent) throws IOException {
+        if(!isAnyItemSelected(mealsTable.getSelectionModel().getSelectedIndex(),"No meal selected"))
+            return;
+        openEditMeal(mealsTable.getSelectionModel().getSelectedItem());
     }
     /**
      * Deletes the selected meal from tableview and database (with a confirmation alert)
