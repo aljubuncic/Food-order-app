@@ -81,4 +81,7 @@ public class AddOrUpdateMealController extends AbstractController{
         }
         closeWindow(actionEvent);
     }
+    public void cancelClick(ActionEvent actionEvent) {
+        closeWindow(actionEvent);
+    }
 }
