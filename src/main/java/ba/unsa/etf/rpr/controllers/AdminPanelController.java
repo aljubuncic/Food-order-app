@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -77,6 +78,7 @@ public class AdminPanelController extends AbstractController{
     @FXML
     public TableColumn<User,String> telephoneNumberColumn;
     public TabPane tabPane;
+    public MenuBar menuBar;
 
     /**
      * fetches orders from database
@@ -307,5 +309,15 @@ public class AdminPanelController extends AbstractController{
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
         }
         new Alert(Alert.AlertType.INFORMATION,user.getUsername() + " successfully deleted",ButtonType.OK).showAndWait();
+    }
+
+    /**
+     * Exits the admin panel and opens a login window
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void exitClick(ActionEvent actionEvent) throws IOException {
+        ((Stage) menuBar.getScene().getWindow()).close();
+        openLoginWindow();
     }
 }
