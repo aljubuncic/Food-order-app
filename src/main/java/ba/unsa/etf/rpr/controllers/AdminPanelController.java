@@ -21,9 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -276,5 +279,33 @@ public class AdminPanelController extends AbstractController{
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
         }
         new Alert(Alert.AlertType.INFORMATION,meal.getName() + " successfully deleted",ButtonType.OK).showAndWait();
+    }
+
+    /**
+     * Deletes the selected user from tableview and database (with a confirmation alert)
+     * WARNING: This also removes every order made by user in the past
+     * @param actionEvent
+     */
+    public void deleteUserClick(ActionEvent actionEvent) throws IOException {
+        if(!isAnyItemSelected(usersTable.getSelectionModel().getSelectedIndex(),"No user selected"))
+            return;
+        if(!confirmationOfDelete("user"))
+            return;
+        User user = usersTable.getSelectionModel().getSelectedItem();
+        try{
+            Properties adminCredentials = new Properties();
+            adminCredentials.load(new FileReader("src/main/resources/admin.properties"));
+            if(user.getUsername().equals(adminCredentials.getProperty("username"))) {
+                new Alert(Alert.AlertType.WARNING, "Admin cannot be deleted!", ButtonType.OK).showAndWait();
+                return;
+            }
+            userManager.delete(user);
+            refreshUsers();
+            refreshOrders();
+        }
+        catch (OrderException e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+        }
+        new Alert(Alert.AlertType.INFORMATION,user.getUsername() + " successfully deleted",ButtonType.OK).showAndWait();
     }
 }

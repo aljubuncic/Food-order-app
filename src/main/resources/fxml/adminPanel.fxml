@@ -93,7 +93,10 @@
                      <top>
                         <MenuBar BorderPane.alignment="CENTER">
                           <menus>
-                            <Menu mnemonicParsing="false" text="Delete" />
+                            <Menu mnemonicParsing="false" text="Edit">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteUserClick" text="Delete" />
+                                 </items></Menu>
                           </menus>
                         </MenuBar>
                      </top>
