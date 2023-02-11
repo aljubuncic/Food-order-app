@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.FileReader;
@@ -29,8 +32,14 @@ public class LoginController extends AbstractController {
 
     public Label checkUsername;
     public Label checkPassword;
+    public Button exitButton;
     @FXML
     public void initialize(){
+        ImageView view = new ImageView(new Image("img/exit.png"));
+        view.setFitHeight(40);
+        view.setFitWidth(40);
+        view.setPreserveRatio(true);
+        exitButton.setGraphic(view);
         addListenerToField(usernameField,checkUsername,"Username is invalid","Username","^[a-zA-Z0-9._-]+");
         addListenerToField(passwordField,checkPassword,"Password cannot contain spaces","Password","^\\S+");
     }
@@ -94,5 +103,14 @@ public class LoginController extends AbstractController {
         newStage.setResizable(false);
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
+    }
+
+    /**
+     * Exits the app
+     * @param actionEvent
+     */
+    public void exitClick(ActionEvent actionEvent) {
+        Platform.exit();
+        System.exit(0);
     }
 }
