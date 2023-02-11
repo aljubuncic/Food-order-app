@@ -216,13 +216,13 @@ public class AdminPanelController extends AbstractController{
             return;
         Order order = ordersTable.getSelectionModel().getSelectedItem();
         try{
-            orderMealManager.deleteOrder(order);
             orderManager.delete(order);
+            refreshOrders();
         }
         catch(OrderException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
         }
-        refreshOrders();
+        new Alert(Alert.AlertType.INFORMATION,"Order with ID " + order.getId()+ " successfully deleted",ButtonType.OK).showAndWait();
     }
 
     /**

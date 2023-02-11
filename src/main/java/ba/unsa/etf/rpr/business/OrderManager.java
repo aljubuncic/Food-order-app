@@ -45,6 +45,7 @@ public class OrderManager {
         return DaoFactory.orderDao().getAll();
     }
     public void delete(Order order) throws OrderException {
+        new Order_MealManager().deleteOrder(order);
         DaoFactory.orderDao().delete(order.getId());
     }
 }
