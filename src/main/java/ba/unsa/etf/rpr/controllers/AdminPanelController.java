@@ -83,7 +83,7 @@ public class AdminPanelController extends AbstractController{
             ordersTable.refresh();
         }
         catch (OrderException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
+            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE).showAndWait();
         }
     }
 
@@ -97,7 +97,7 @@ public class AdminPanelController extends AbstractController{
             mealsTable.refresh();
         }
         catch (OrderException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
+            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE).showAndWait();
         }
     }
 
@@ -111,11 +111,11 @@ public class AdminPanelController extends AbstractController{
             usersTable.refresh();
         }
         catch (OrderException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE);
+            new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.CLOSE).showAndWait();
         }
     }
     /**
-     * Creates an confirmation alert and returns true if user has confirmed deletion of object
+     * Creates a confirmation alert and returns true if user has confirmed deletion of object
      * @param object
      * @return
      */
@@ -156,7 +156,7 @@ public class AdminPanelController extends AbstractController{
      */
     public void viewMealsClick(ActionEvent actionEvent) throws IOException {
         if(ordersTable.getSelectionModel().getSelectedIndex()==-1) {
-            new Alert(Alert.AlertType.WARNING, "No order selected", ButtonType.OK);
+            new Alert(Alert.AlertType.WARNING, "No order selected", ButtonType.OK).showAndWait();
             return;
         }
         Order order = ordersTable.getSelectionModel().getSelectedItem();
@@ -191,7 +191,7 @@ public class AdminPanelController extends AbstractController{
             orderManager.delete(order);
         }
         catch(OrderException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
         }
         refreshOrders();
     }
@@ -230,7 +230,7 @@ public class AdminPanelController extends AbstractController{
             refreshMeals();
         }
         catch (OrderException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+            new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
         }
     }
 }
