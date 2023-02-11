@@ -38,4 +38,47 @@ public class AddOrUpdateMealController extends AbstractController{
         quantityField.setText(String.valueOf(mealToUpdate.getQuantity()));
         typeField.setValue(mealToUpdate.getType());
     }
+
+    public void addOrUpdateClick(ActionEvent actionEvent) {
+        if(nameField.getText().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Name is empty", ButtonType.OK).showAndWait();
+            return;
+        }
+        if(!priceField.getText().matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+            new Alert(Alert.AlertType.WARNING, "Price can only contain number", ButtonType.OK).showAndWait();
+            return;
+        }
+        if(!quantityField.getText().matches("^[1-9]\\d*$")){
+            new Alert(Alert.AlertType.WARNING, "Quantity is integer", ButtonType.OK).showAndWait();
+            return;
+        }
+        if(mealToUpdate!=null) {
+            try {
+                mealToUpdate.setName(nameField.getText());
+                mealToUpdate.setPrice(Double.parseDouble(priceField.getText()));
+                mealToUpdate.setQuantity(Integer.parseInt(quantityField.getText()));
+                mealToUpdate.setType(typeField.getValue());
+                mealManager.update(mealToUpdate);
+            } catch (OrderException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
+                return;
+            }
+            new Alert(Alert.AlertType.INFORMATION,mealToUpdate.getName()+" successfully updated!",ButtonType.OK);
+        }
+        else {
+            Meal meal = new Meal();
+            meal.setName(nameField.getText());
+            meal.setPrice(Double.parseDouble(priceField.getText()));
+            meal.setQuantity(Integer.parseInt(quantityField.getText()));
+            meal.setType(typeField.getValue());
+            try {
+                mealManager.add(meal);
+            } catch (OrderException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE).showAndWait();
+                return;
+            }
+            new Alert(Alert.AlertType.INFORMATION, meal.getName() + " successfully added!", ButtonType.OK);
+        }
+        closeWindow(actionEvent);
+    }
 }
