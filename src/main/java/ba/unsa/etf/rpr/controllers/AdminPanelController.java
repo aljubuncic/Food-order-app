@@ -36,6 +36,8 @@ public class AdminPanelController extends AbstractController{
     @FXML
     public TableView<Order> ordersTable;
     @FXML
+    public TableColumn<Order,Integer> orderIDColumn;
+    @FXML
     public TableColumn<Order,String> userColumn;
     @FXML
     public TableColumn<Order,String> dateOfOrderColumn;
@@ -153,6 +155,7 @@ public class AdminPanelController extends AbstractController{
     }
     @FXML
     public void initialize(){
+        orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         userColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUser().getUsername()));
         dateOfOrderColumn.setCellValueFactory(cellData -> new SimpleStringProperty((cellData.getValue().getDateOfOrder().toString())));
         orderPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
