@@ -124,7 +124,33 @@ public class AdminPanelController extends AbstractController{
         Optional<ButtonType> result = alert.showAndWait();
         return result.get() == ButtonType.YES;
     }
-
+    /**
+     * Opens a window for adding or updating a meal (if mealToUpdate is not null) and refreshes a table of meals afterwards
+     * @param mealToUpdate
+     * @throws IOException
+     */
+    private void openEditMeal(Meal mealToUpdate) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/adminPanelWindows/addOrUpdateMeal.fxml"));
+        AddOrUpdateMealController controller;
+        if(mealToUpdate!=null) {
+            controller = new AddOrUpdateMealController(mealToUpdate);
+            stage.setTitle("Update a meal");
+        }
+        else {
+            stage.setTitle("Add a meal");
+            controller=new AddOrUpdateMealController();
+        }
+        loader.setController(controller);
+        stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("img/iconOnWindow.png"));
+        stage.show();
+        stage.setOnHiding(event -> {
+            ((Stage)tabPane.getScene().getWindow()).show();
+            refreshMeals();
+        });
+    }
     @FXML
     public void initialize(){
         userColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUser().getUsername()));
