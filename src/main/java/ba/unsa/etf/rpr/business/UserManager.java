@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.domain.Order;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
@@ -42,5 +43,12 @@ public class UserManager {
 
     public List<User> getAll() throws OrderException {
         return DaoFactory.userDao().getAll();
+    }
+    public void delete(User user) throws OrderException {
+        OrderManager orderManager = new OrderManager();
+        List<Order> orders =  orderManager.getByUser(user);
+        for(Order order : orders)
+            orderManager.delete(order);
+        DaoFactory.userDao().delete(user.getId());
     }
 }
