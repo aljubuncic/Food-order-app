@@ -19,4 +19,13 @@ public interface MealDao extends Dao<Meal>{
      */
 
     List<Meal> searchByType(String typeOfMeal) throws OrderException;
+
+    /**
+     * Returns a meal from database with specified name and quantity
+     * @param name
+     * @param quantity
+     * @return
+     * @throws OrderException
+     */
+    Meal getByNameAndQuantity(String name, int quantity) throws OrderException;
 }

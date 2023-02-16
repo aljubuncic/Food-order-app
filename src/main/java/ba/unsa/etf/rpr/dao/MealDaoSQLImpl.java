@@ -66,4 +66,19 @@ public class MealDaoSQLImpl extends AbstractDao<Meal> implements MealDao {
             throw new OrderException(e.getMessage());
         }
     }
+
+    @Override
+    public Meal getByNameAndQuantity(String name, int quantity) throws OrderException {
+        try{
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM Meals WHERE name = ? AND quantity = ?");
+            statement.setObject(1, name);
+            statement.setObject(2,quantity);
+            ResultSet queryResult = statement.executeQuery();
+            if(!queryResult.next())
+                throw new OrderException("Meal not found");
+            return rowToObject(queryResult);
+      }   catch (SQLException e) {
+        throw new OrderException(e.getMessage());
+    }
+    }
 }

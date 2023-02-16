@@ -87,7 +87,7 @@ public class RegisterController extends AbstractController {
         }
         if(!emailField.getText().isEmpty() && !emailField.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")){
             emailField.requestFocus();
-            emailField.getStyleClass().add("fieldIsEmpty");
+            emailField.getStyleClass().add("fieldIsInvalid");
             checkEmail.setText("Email has invalid format");
         }
         if(!matchesRegex(telephoneNumberField.getText(),"^[0-9]+$",telephoneNumberField,checkTelephoneNumber,"Telephone number","Enter numbers only")) {
