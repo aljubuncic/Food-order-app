@@ -11,6 +11,14 @@ public class Meal implements Identifiable{
     private String name;
     private double price;
     private int quantity;
+    public Meal(){}
+
+    public Meal(String name, double price, int quantity, String typeOfMeal) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.typeOfMeal = typeOfMeal;
+    }
 
     private String typeOfMeal;
 

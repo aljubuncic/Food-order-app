@@ -14,6 +14,15 @@ public class User implements Identifiable{
     private String password;
     private String address;
     private String telephoneNumber;
+    public User(){}
+
+    public User(String name, String surname, String username, String password, String telephoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.telephoneNumber = telephoneNumber;
+    }
 
     public int getId() {
         return id;

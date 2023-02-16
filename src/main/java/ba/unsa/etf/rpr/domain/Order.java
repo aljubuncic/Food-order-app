@@ -14,6 +14,13 @@ public class Order implements Identifiable{
     private double price;
     private String confirmationEmail;
     private String address;
+    public Order(){}
+
+    public Order(User user, Date dateOfOrder, double price) {
+        this.user = user;
+        this.dateOfOrder = dateOfOrder;
+        this.price = price;
+    }
 
     public int getId() {
         return id;
