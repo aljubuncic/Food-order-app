@@ -22,9 +22,12 @@ import java.util.Properties;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX Controller for login window
+ */
 public class LoginController extends AbstractController {
 
-    private UserManager userManager = new UserManager();
+    private final UserManager userManager = new UserManager();
 
     public TextField usernameField;
     public PasswordField passwordField;
@@ -32,6 +35,10 @@ public class LoginController extends AbstractController {
 
     public Label checkUsername;
     public Label checkPassword;
+
+    /**
+     * Adds listeners to username and password fields
+     */
     @FXML
     public void initialize(){
         addListenerToField(usernameField,checkUsername,"Username is invalid","Username","^[a-zA-Z0-9._-]+");
