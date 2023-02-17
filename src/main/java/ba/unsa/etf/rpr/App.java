@@ -51,6 +51,69 @@ public class App
         return options;
     }
 
-
+    /**
+     * The main method for executing the commands given by the user
+     * @param args - eventual arguments of commands
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception{
+        Options options = addOptions();
+        CommandLineParser commandLineParser = new DefaultParser();
+        CommandLine cl = commandLineParser.parse(options, args);
+        if((cl.hasOption(register.getOpt()) || cl.hasOption(register.getLongOpt())) && cl.hasOption((register.getLongOpt()))){
+            User user = new User(cl.getArgList().get(0),cl.getArgList().get(1),cl.getArgList().get(2),cl.getArgList().get(3),cl.getArgList().get(4));
+            try {
+                userManager.add(user);
+            }
+            catch (OrderException e){
+                System.out.println(e.getMessage());
+                System.exit(1);
+            }
+            System.out.println("You have successfully registered");
+        }
+        else if((cl.hasOption(displayMeals.getOpt()) || cl.hasOption(displayMeals.getLongOpt())) && cl.hasOption((displayMeals.getLongOpt()))){
+            mealManager.getAll().forEach(meal-> System.out.println(meal.getId() + " " + meal.getName() + " " + meal.getQuantity() + " " + meal.getPrice() + " "+ meal.getType()));
+            System.out.println("To order please select your meals by typing the meal IDs (first number in a row)");
+        }
+        else if ((cl.hasOption(order.getOpt()) || cl.hasOption(order.getLongOpt())) && cl.hasOption((order.getLongOpt()))){
+            if(cl.getArgList().size()==2) {
+                System.out.println("Please select a meal");
+                return;
+            }
+            User activeUser;
+            try {
+                String username = cl.getArgList().get(0);
+                String password = cl.getArgList().get(1);
+                activeUser = userManager.validateLoginCredentials(username, password);
+            }
+            catch (OrderException e){
+                System.out.println(e.getMessage());
+                return;
+            }
+            System.out.println("You have successfully logged in");
+            List<Meal> orderList = new LinkedList<>();
+            double priceOfOrder=0;
+            for(int i = 2;i<cl.getArgList().size();i++) {
+                Meal meal = mealManager.getById(Integer.parseInt(cl.getArgList().get(i)));
+                orderList.add(meal);
+                priceOfOrder+=meal.getPrice();
+            }
+            Order order = new Order(activeUser,new Date(),priceOfOrder);
+            try {
+                orderManager.add(order, orderList);
+            }
+            catch (OrderException e){
+                System.out.println(e.getMessage());
+                System.exit(-1);
+            }
+            System.out.println("Order has been successfully placed. ID of your order is " + order.getId());
+            System.out.println("Total price to pay for: " + order.getPrice());
+            System.out.println("Bon appetite!");
+        }
+        else {
+            printFormattedOptions(options);
+            System.exit(-1);
+        }
+    }
 
 }
