@@ -21,5 +21,20 @@ import static org.mockito.Mockito.when;
  * Test class for UserManager
  */
 public class UserManagerTest {
+    private UserManager userManager;
+    private UserDaoSQLImpl userDaoSQL;
+    private List<User> users;
+    private User user;
+    /**
+     * This method will be called before each test to initialize objects needed
+     */
+    @BeforeEach
+    public void initializeObjectsWeNeed() {
+        userManager = Mockito.mock(UserManager.class);
+        userDaoSQL = Mockito.mock(UserDaoSQLImpl.class);
+        user = new User("Sejfo","Sejfic","sjf32","pass","062765321");
+        users = (Arrays.asList(new User("Cristiano","Ronaldo","CR7","SIU","777"),
+                                   new User("Lionel","Messi","LM10","GOAT","777")));
+    }
 
 }
