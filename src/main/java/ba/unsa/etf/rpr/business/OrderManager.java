@@ -31,13 +31,31 @@ public class OrderManager {
         }
         return order;
     }
+
+    /**
+     * Returns all orders from database
+     * @return List of orders
+     * @throws OrderException
+     */
     public List<Order> getAll() throws OrderException {
         return DaoFactory.orderDao().getAll();
     }
+
+    /**
+     * Deletes a order from database
+     * @param order to be deleted
+     * @throws OrderException
+     */
     public void delete(Order order) throws OrderException {
         new Order_MealManager().deleteOrder(order);
         DaoFactory.orderDao().delete(order.getId());
     }
+    /**
+     * Returns orders with the corresponding user
+     * @param user associated with the orders
+     * @return List of orders
+     * @throws OrderException
+     */
     public List<Order> getByUser(User user) throws OrderException {
         return DaoFactory.orderDao().getByUser(user);
     }
