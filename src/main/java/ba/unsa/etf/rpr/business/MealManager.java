@@ -22,21 +22,54 @@ public class MealManager {
         }
         throw new OrderException("Meal with same name and quantity (portion) already exists");
     }
+
+    /**
+     * Returns all meals from database
+     * @return List of meals
+     * @throws OrderException
+     */
     public List<Meal> getAll() throws OrderException {
         return DaoFactory.mealDao().getAll();
     }
+
+    /**
+     * Deletes a meal from database
+     * @param meal to be deleted
+     * @throws OrderException
+     */
     public void delete(Meal meal) throws OrderException {
         new Order_MealManager().deleteMeal(meal);
         DaoFactory.mealDao().delete(meal.getId());
     }
+
+    /**
+     * Checks if the meal already exists, and adds it to the database
+     * @param meal to be added
+     * @return added meal
+     * @throws OrderException
+     */
     public Meal add(Meal meal) throws OrderException {
         doesMealAlreadyExist(meal);
         return DaoFactory.mealDao().add(meal);
     }
+
+    /**
+     * Checks if the meal already exists, and updates it to the database
+     * @param meal to be updated
+     * @return updated meal
+     * @throws OrderException
+     */
     public Meal update(Meal meal) throws OrderException {
         doesMealAlreadyExist(meal);
         return DaoFactory.mealDao().update(meal);
     }
+
+    /**
+     * Returns a meal with the specified id
+     * @param id of the meal to be returned
+     * @return meal
+     * @throws OrderException
+     */
     public Meal getById(int id) throws OrderException {
         return DaoFactory.mealDao().getById(id);
     }
