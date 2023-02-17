@@ -14,5 +14,19 @@ import java.util.List;
  * Test class for MealManager
  */
 public class MealManagerTest {
+    private MealManager mealManager;
+    private Meal meal;
+    private MealDaoSQLImpl mealDaoSQL;
+    private List<Meal> meals;
+
+    /**
+     * This method will be called before each test to initialize objects needed
+     */
+    @BeforeEach
+    public void initializeObjectsWeNeed(){
+        mealManager = Mockito.mock(MealManager.class);
+        mealDaoSQL = Mockito.mock(MealDaoSQLImpl.class);
+        meal = new Meal("Cevapi",5,300,"Main dish");
+    }
 
 }
