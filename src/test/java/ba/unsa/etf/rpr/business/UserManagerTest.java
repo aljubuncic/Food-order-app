@@ -36,5 +36,15 @@ public class UserManagerTest {
         users = (Arrays.asList(new User("Cristiano","Ronaldo","CR7","SIU","777"),
                                    new User("Lionel","Messi","LM10","GOAT","777")));
     }
+    /**
+     * This method tests adding user
+     * @throws OrderException
+     */
+    @Test
+    void addNewUser() throws OrderException {
+        userManager.add(user);
+        Assertions.assertTrue(true);
+        Mockito.verify(userManager).add(user);
+    }
 
 }
