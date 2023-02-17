@@ -19,6 +19,9 @@ import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX Controller for order management
+ */
 public class ConfirmOrderController extends AbstractController{
     private final OrderManager orderManager = new OrderManager();
     private double priceOfOrder = 0;
@@ -61,6 +64,10 @@ public class ConfirmOrderController extends AbstractController{
         this.orderList = selectedMeals;
         this.user = user;
     }
+
+    /**
+     * Populates the cart with items previously selected on the home window and adds listeners to radio buttons
+     */
     @FXML
     public void initialize(){
         if(user.getAddress()!=null)
@@ -82,10 +89,22 @@ public class ConfirmOrderController extends AbstractController{
         addListenerToField(addressField,checkAddress,"Invalid address","Address","\\S+");
         addListenerToField(emailField,checkEmail,"Invalid email","Email","^[A-Za-z0-9+_.-]+@(.+)$");
     }
+
+    /**
+     * Returns back to home window
+     * @param actionEvent
+     * @throws Exception
+     */
     public void goBackClick(ActionEvent actionEvent) throws Exception {
         closeWindow(actionEvent);
         openHomeWindow(user,orderList);
     }
+
+    /**
+     * Creates a new order and opens a window of confirmation of the order
+     * @param actionEvent
+     * @throws IOException
+     */
     public void orderClick(ActionEvent actionEvent) throws IOException {
         Order order = new Order();
         order.setUser(user);
