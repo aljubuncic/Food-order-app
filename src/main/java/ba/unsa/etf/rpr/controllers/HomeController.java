@@ -23,6 +23,9 @@ import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX Controller for home window
+ */
 public class HomeController extends AbstractController {
     private final UserManager userManager= new UserManager();
     private final MealManager mealManager = new MealManager();
@@ -48,6 +51,11 @@ public class HomeController extends AbstractController {
         this.user=user;
         cartList = new LinkedList<>();
     }
+
+    /**
+     * Populates the user's cart
+     * @param cartList from where user's cart will be populated
+     */
     public void setCartList(List<Meal> cartList) {
         this.cartList = cartList;
         for (Meal meal : cartList) {
@@ -55,6 +63,9 @@ public class HomeController extends AbstractController {
         }
     }
 
+    /**
+     * Adds content from database to TableView of meals and sets username, name and surname of the user
+     */
     @FXML
     public void initialize() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
