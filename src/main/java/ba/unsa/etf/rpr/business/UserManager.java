@@ -12,6 +12,13 @@ import java.util.List;
  */
 
 public class UserManager {
+    /**
+     * Checks if user with specified credentials exists in the database
+     * @param username of the user
+     * @param password of the user
+     * @return user
+     * @throws OrderException in case of user not existing in the database or password not being correct
+     */
     public User validateLoginCredentials(String username, String password) throws OrderException {
         User user;
         try{
@@ -25,9 +32,12 @@ public class UserManager {
         return user;
     }
 
-    public User getByUsername(String username) throws OrderException {
-        return DaoFactory.userDao().getByUsername(username);
-    }
+    /**
+     * Adds the user in the database
+     * @param user to be added
+     * @return added user
+     * @throws OrderException in case of user already existing in the database
+     */
     public User add(User user) throws OrderException {
         try {
             return DaoFactory.userDao().add(user);
@@ -40,10 +50,20 @@ public class UserManager {
         }
         return null;
     }
-
+    /**
+     * Returns all users from database
+     * @return List of users
+     * @throws OrderException
+     */
     public List<User> getAll() throws OrderException {
         return DaoFactory.userDao().getAll();
     }
+
+    /**
+     * Deletes all rows in Orders associated with the user and then deletes a user from database
+     * @param user to be deleted
+     * @throws OrderException
+     */
     public void delete(User user) throws OrderException {
         OrderManager orderManager = new OrderManager();
         List<Order> orders =  orderManager.getByUser(user);
