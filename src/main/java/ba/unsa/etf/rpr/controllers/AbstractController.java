@@ -23,9 +23,9 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public abstract class AbstractController {
     /**
      * Sets the field invalid (adds red border on the text field and warning text beneath)
-     * @param textField
-     * @param checkLabel
-     * @param errorMessage
+     * @param textField on which red border will be applied
+     * @param checkLabel where warning text will be displayed
+     * @param errorMessage message to be displayed in checkLabel
      */
     protected void setFieldInvalid(TextField textField, Label checkLabel, String errorMessage) {
         textField.getStyleClass().add("fieldIsInvalid");
@@ -33,8 +33,8 @@ public abstract class AbstractController {
     }
     /**
      * Sets the field valid (removes red border on the text field and warning text beneath)
-     * @param textField
-     * @param checkLabel
+     * @param textField from which red border will be removed
+     * @param checkLabel from which warning text will be removed
      */
     protected void setFieldValid(TextField textField, Label checkLabel) {
         textField.getStyleClass().removeAll("fieldIsInvalid");
@@ -51,13 +51,13 @@ public abstract class AbstractController {
     }
     /**
      * Checks if the string n matches regex and sets the responding field valid or invalid
-     * @param n
-     * @param regex
-     * @param textField
-     * @param checkLabel
-     * @param fieldName
-     * @param errorMessage
-     * @return
+     * @param n input string
+     * @param regex regular expression
+     * @param textField to be set valid or invalid
+     * @param checkLabel where warning text will be displayed
+     * @param fieldName name of the field
+     * @param errorMessage message to be displayed in checkLabel
+     * @return true if n matches regex
      */
     protected boolean matchesRegex(String n,String regex,TextField textField, Label checkLabel,String fieldName,String errorMessage){
         if(!n.matches(regex)) {
@@ -72,11 +72,11 @@ public abstract class AbstractController {
     }
     /**
      * Adds listener to the specified text field and checks its validity in real time
-     * @param textField
-     * @param checkLabel
-     * @param errorMessage
-     * @param fieldName
-     * @param regex
+     * @param textField field to whose textProperty listener will be added
+     * @param checkLabel where warning text will be displayed
+     * @param errorMessage message to be displayed in checkLabel
+     * @param fieldName name of the field
+     * @param regex regular expression
      */
     protected void addListenerToField(TextField textField, Label checkLabel, String errorMessage,String fieldName,String regex){
         textField.textProperty().addListener(((observableValue, o, n) -> {
@@ -87,8 +87,8 @@ public abstract class AbstractController {
 
     /**
      * Adds a meal in string format (name, quantity in grams, price in KM) to cart (ListView)
-     * @param cartListView
-     * @param meal
+     * @param cartListView ListView object
+     * @param meal to be added
      */
     protected void addMealToCartListView(ListView cartListView, Meal meal) {
         StringBuilder builder = new StringBuilder();
@@ -109,8 +109,9 @@ public abstract class AbstractController {
         stage.show();
     }
     /**
-     * Opens a home window of specified user and populates the user's cart with the specified cartList (if not null)
-     * @param user
+     * Opens a home window of specified user and populates the user's cart with the specified cartList
+     * @param user whose home window will be opened
+     * @param cartList list from which user's cart will be populated
      * @throws IOException
      */
     protected void openHomeWindow(User user, List<Meal> cartList) throws IOException {
@@ -127,9 +128,9 @@ public abstract class AbstractController {
     }
     /**
      * Checks if any item is selected (usually from ListView or TableView)
-     * @param index
-     * @param errorMessage
-     * @return
+     * @param index of the ListView selected item
+     * @param errorMessage to be displayed in warning alert
+     * @return true if any item is selected in the ListView (if index is not -1)
      */
     protected boolean isAnyItemSelected(int index,String errorMessage){
         if(index==-1) {
