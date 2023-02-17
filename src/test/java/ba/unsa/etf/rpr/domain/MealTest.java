@@ -17,4 +17,13 @@ public class MealTest {
         Assertions.assertTrue(meal1.equals(meal2));
     }
 
+    /**
+     * This method tests toString method
+     */
+    @Test
+    void toStringMethodTest(){
+        Meal meal = new Meal("Pizza",4,250,"Main dish");
+        String string = "Meal{id=0, name='Pizza', price=4.0, quantity=250, typeOfMeal=Main dish}";
+        Assertions.assertEquals(meal.toString(), string);
+    }
 }
