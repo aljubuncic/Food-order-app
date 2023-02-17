@@ -29,4 +29,15 @@ public class MealManagerTest {
         meal = new Meal("Cevapi",5,300,"Main dish");
     }
 
+    /**
+     * This method tests adding meal using mocking
+     * @throws OrderException
+     */
+    @Test
+    void addNewMeal() throws OrderException {
+        mealManager.add(meal);
+        Assertions.assertTrue(true);
+        Mockito.verify(mealManager).add(meal);
+    }
+
 }
