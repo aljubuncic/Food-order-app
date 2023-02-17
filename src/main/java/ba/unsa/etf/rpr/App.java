@@ -39,5 +39,18 @@ public class App
         printWriter.close();
     }
 
+    /**
+     * Adds option objects to Options object
+     * @return - Options object
+     */
+    public static Options addOptions() {
+        Options options = new Options();
+        options.addOption(order);
+        options.addOption(register);
+        options.addOption(displayMeals);
+        return options;
+    }
+
+
 
 }
