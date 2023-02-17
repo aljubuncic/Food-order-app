@@ -20,7 +20,7 @@ public class MealManager {
         }catch(OrderException e){
             return;
         }
-        throw new OrderException("Meal with same portion name and quantity (portion) already exists");
+        throw new OrderException("Meal with same name and quantity (portion) already exists");
     }
     public List<Meal> getAll() throws OrderException {
         return DaoFactory.mealDao().getAll();
@@ -36,5 +36,8 @@ public class MealManager {
     public Meal update(Meal meal) throws OrderException {
         doesMealAlreadyExist(meal);
         return DaoFactory.mealDao().update(meal);
+    }
+    public Meal getById(int id) throws OrderException {
+        return DaoFactory.mealDao().getById(id);
     }
 }
