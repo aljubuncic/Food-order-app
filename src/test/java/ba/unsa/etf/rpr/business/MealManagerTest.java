@@ -30,7 +30,7 @@ public class MealManagerTest {
     }
 
     /**
-     * This method tests adding meal using mocking
+     * This method tests adding meal
      * @throws OrderException
      */
     @Test
@@ -39,5 +39,14 @@ public class MealManagerTest {
         Assertions.assertTrue(true);
         Mockito.verify(mealManager).add(meal);
     }
-
+    /**
+     * This method tests updating meal
+     * @throws OrderException
+     */
+    @Test
+    void updateMeal() throws OrderException {
+        mealManager.update(meal);
+        Assertions.assertTrue(true);
+        Mockito.verify(mealManager).update(meal);
+    }
 }
