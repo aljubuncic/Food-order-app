@@ -18,6 +18,9 @@ import java.io.IOException;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX Controller for register window
+ */
 public class RegisterController extends AbstractController {
 
     private UserManager userManager = new UserManager();
@@ -38,6 +41,10 @@ public class RegisterController extends AbstractController {
     public PasswordField passwordField;
     public PasswordField confirmedPasswordField;
     public Button registerButton;
+
+    /**
+     * Adds listeners to name, surname, username, telephone number, password, confirmation of password, email and address fields
+     */
     @FXML
     public void initialize() {
         // does not accept empty string, numbers and special characters
