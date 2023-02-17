@@ -31,6 +31,9 @@ import java.util.Properties;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX Controller for admin panel - user, meal and order management
+ */
 public class AdminPanelController extends AbstractController{
     private final OrderManager orderManager = new OrderManager();
     private final MealManager mealManager = new MealManager();
@@ -123,17 +126,17 @@ public class AdminPanelController extends AbstractController{
     }
     /**
      * Creates a confirmation alert and returns true if user has confirmed deletion of object
-     * @param object
+     * @param text text to be displayed on confirmation alert
      * @return
      */
-    private boolean confirmationOfDelete(String object){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this " + object + "?",ButtonType.YES,ButtonType.CANCEL);
+    private boolean confirmationOfDelete(String text){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this " + text + "?",ButtonType.YES,ButtonType.CANCEL);
         Optional<ButtonType> result = alert.showAndWait();
         return result.get() == ButtonType.YES;
     }
     /**
      * Opens a window for adding or updating a meal (if mealToUpdate is not null) and refreshes a table of meals afterwards
-     * @param mealToUpdate
+     * @param mealToUpdate to be updated
      * @throws IOException
      */
     private void openEditMeal(Meal mealToUpdate) throws IOException {
@@ -158,6 +161,10 @@ public class AdminPanelController extends AbstractController{
             refreshMeals();
         });
     }
+
+    /**
+     * Populates the tableviews for orders, users and meals from database
+     */
     @FXML
     public void initialize(){
         orderIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
