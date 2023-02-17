@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -86,9 +87,16 @@ public class ConfirmOrderController extends AbstractController{
         openHomeWindow(user,orderList);
     }
     public void orderClick(ActionEvent actionEvent) throws IOException {
-        Order order;
+        Order order = new Order();
+        order.setUser(user);
+        order.setDateOfOrder(new Date());
+        order.setPrice(priceOfOrder);
+        if(!emailField.getText().isEmpty())
+            order.setConfirmationEmail(emailField.getText());
+        if(!addressField.getText().isEmpty())
+            order.setAddress(addressField.getText());
         try {
-            order = orderManager.add(user,orderList,priceOfOrder,emailField.getText(),addressField.getText());
+            orderManager.add(order,orderList);
         } catch (OrderException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
             return;

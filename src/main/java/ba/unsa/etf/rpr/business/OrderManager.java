@@ -16,22 +16,12 @@ import java.util.List;
 public class OrderManager {
     /**
      * Adds a new order and order list in the database
-     * @param user
+     * @param order
      * @param orderList
-     * @param priceOfOrder
-     * @param confirmationEmail
-     * @param address
+     * @return
      * @throws OrderException
      */
-    public Order add (User user, List<Meal> orderList,double priceOfOrder,String confirmationEmail, String address) throws OrderException {
-        Order order = new Order();
-        order.setUser(user);
-        order.setDateOfOrder(new Date());
-        order.setPrice(priceOfOrder);
-        if(!confirmationEmail.isEmpty())
-            order.setConfirmationEmail(confirmationEmail);
-        if(!address.isEmpty())
-            order.setAddress(address);
+    public Order add (Order order, List<Meal> orderList) throws OrderException {
         DaoFactory.orderDao().add(order);
         for(Meal meal : orderList) {
             Order_Meal order_meal = new Order_Meal();
