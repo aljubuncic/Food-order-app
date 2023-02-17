@@ -33,7 +33,7 @@ public class MealManager {
     }
 
     /**
-     * Deletes a meal from database
+     * Deletes all rows in Orders_Meals associated with the meal and then deletes a meal from database
      * @param meal to be deleted
      * @throws OrderException
      */

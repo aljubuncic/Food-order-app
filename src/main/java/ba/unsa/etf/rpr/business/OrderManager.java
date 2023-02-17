@@ -42,7 +42,7 @@ public class OrderManager {
     }
 
     /**
-     * Deletes a order from database
+     * Deletes all rows in Orders_Meals associated with the order and then deletes a order from database
      * @param order to be deleted
      * @throws OrderException
      */
