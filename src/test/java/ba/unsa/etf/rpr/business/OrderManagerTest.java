@@ -36,4 +36,16 @@ public class OrderManagerTest {
         order = new Order(user,new Date(),23.5);
         meals = Arrays.asList(new Meal("Cevapi",5,300,"Main dish"),new Meal("Pizza",4,250,"Main dish"));
     }
+
+    /**
+     * This method tests adding order
+     * @throws OrderException
+     */
+    @Test
+    void addNewOrder() throws OrderException {
+        Order order = new Order(user,new Date(),23.5);
+        orderManager.add(order,meals);
+        Assertions.assertTrue(true);
+        Mockito.verify(orderManager).add(order,meals);
+    }
 }
