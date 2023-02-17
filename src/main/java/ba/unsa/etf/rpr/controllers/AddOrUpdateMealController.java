@@ -11,6 +11,9 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * JavaFX controller for creation and alteration of Meal object
+ */
 public class AddOrUpdateMealController extends AbstractController{
     private final MealManager mealManager = new MealManager();
     public TextField nameField;
@@ -23,6 +26,11 @@ public class AddOrUpdateMealController extends AbstractController{
     public AddOrUpdateMealController(Meal meal){
         mealToUpdate = meal;
     }
+
+    /**
+     * Sets the fields to be already populated with meal info (if meal is to be updated)
+     * Sets the text of the button to "Add" or "Update" depending on the situation
+     */
     @FXML
     public void initialize() {
         String typesOfMeals[] ={"Appetizer","Main dish", "Desert", "Drink"};
@@ -39,6 +47,10 @@ public class AddOrUpdateMealController extends AbstractController{
         typeField.setValue(mealToUpdate.getType());
     }
 
+    /**
+     * Event handler for add or update button
+     * @param actionEvent
+     */
     public void addOrUpdateClick(ActionEvent actionEvent) {
         if(nameField.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Name is empty", ButtonType.OK).showAndWait();
@@ -81,6 +93,11 @@ public class AddOrUpdateMealController extends AbstractController{
         }
         closeWindow(actionEvent);
     }
+
+    /**
+     * Cancels all changes and closes the window
+     * @param actionEvent
+     */
     public void cancelClick(ActionEvent actionEvent) {
         closeWindow(actionEvent);
     }
