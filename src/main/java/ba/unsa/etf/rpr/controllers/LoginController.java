@@ -69,8 +69,7 @@ public class LoginController extends AbstractController {
         }
         closeWindow(actionEvent);
         Properties adminCredentials = new Properties();
-        FileReader fileReader = new FileReader("src/main/resources/admin.properties");
-        adminCredentials.load(fileReader);
+        adminCredentials.load(ClassLoader.getSystemResource("admin.properties").openStream());
         if(user.getUsername().equals(adminCredentials.getProperty("username")) && user.getPassword().equals(adminCredentials.getProperty("password"))){
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/adminPanel.fxml"));

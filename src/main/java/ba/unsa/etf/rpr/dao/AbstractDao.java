@@ -22,8 +22,7 @@ public abstract class AbstractDao <Type extends Identifiable> implements Dao<Typ
         try {
             this.tableName = tableName;
             Properties properties=new Properties();
-            FileReader reader=new FileReader("src/main/resources/db.properties");
-            properties.load(reader);
+            properties.load(ClassLoader.getSystemResource("db.properties").openStream());
             String url = properties.getProperty("connection");
             String username = properties.getProperty("username");
             String password = properties.getProperty("password");
