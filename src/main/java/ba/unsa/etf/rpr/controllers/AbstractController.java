@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.domain.Meal;
 import ba.unsa.etf.rpr.domain.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -136,5 +137,12 @@ public abstract class AbstractController {
             return false;
         }
         return true;
+    }
+    /**
+     * Exits the app
+     */
+    protected void exit() {
+        Platform.exit();
+        System.exit(0);
     }
 }

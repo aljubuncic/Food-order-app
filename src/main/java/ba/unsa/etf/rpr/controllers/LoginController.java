@@ -97,13 +97,11 @@ public class LoginController extends AbstractController {
         newStage.getIcons().add(new Image("img/iconOnWindow.png"));
         newStage.show();
     }
-
     /**
      * Exits the app
      * @param actionEvent
      */
     public void exitClick(ActionEvent actionEvent) {
-        Platform.exit();
-        System.exit(0);
+        exit();
     }
 }

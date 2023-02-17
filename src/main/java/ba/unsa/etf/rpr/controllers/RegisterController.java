@@ -136,9 +136,11 @@ public class RegisterController extends AbstractController {
         closeWindow(actionEvent);
         openLoginWindow();
     }
-
+    /**
+     * Exits the app
+     * @param actionEvent
+     */
     public void exitClick(ActionEvent actionEvent) {
-        Platform.exit();
-        System.exit(0);
+       exit();
     }
 }
