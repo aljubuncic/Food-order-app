@@ -209,10 +209,11 @@ public class AdminPanelController extends AbstractController{
             return;
         }
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/adminPanelWindows/orderMealList.fxml"));
-        stage.setTitle("Order by " + order.getUser().getUsername() + " " + " on " + order.getDateOfOrder());
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/adminPanelWindows/orderMealList.fxml"));
+        stage.setTitle("Order ID: " + order.getId() +" by " + order.getUser().getUsername() + " " + " on " + order.getDateOfOrder());
         OrderMealListController controller = new OrderMealListController(orderList);
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        loader.setController(controller);
+        stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.getIcons().add(new Image("img/iconOnWindow.png"));
         stage.show();
     }
