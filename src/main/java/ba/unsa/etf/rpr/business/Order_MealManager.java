@@ -29,4 +29,14 @@ public class Order_MealManager {
     public void deleteMeal(Meal meal) throws OrderException{
         DaoFactory.order_MealDao().deleteMeal(meal.getId());
     }
+
+    /**
+     * Returns all meals from specified order
+     * @param order which contains meals
+     * @return list of meals
+     * @throws OrderException
+     */
+    public List<Meal> getMealsFromOrder(Order order) throws OrderException {
+        return DaoFactory.order_MealDao().getMealsFromOrder(order);
+    }
 }

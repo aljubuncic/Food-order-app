@@ -203,7 +203,7 @@ public class AdminPanelController extends AbstractController{
         Order order = ordersTable.getSelectionModel().getSelectedItem();
         List<Meal> orderList;
         try {
-            orderList = DaoFactory.order_MealDao().getMealsFromOrder(order);
+            orderList = orderMealManager.getMealsFromOrder(order);
         } catch (OrderException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
             return;
