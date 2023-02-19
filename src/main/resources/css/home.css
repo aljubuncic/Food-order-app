@@ -4,6 +4,18 @@
 .textFields {
     -fx-text-fill: #f85649;
 }
+
+
+.menu-bar {
+    -fx-background-color: #252E39;
+    -fx-border-style:none none solid none;
+    -fx-border-color: #f85649;
+}
+.menu-bar .label{
+    -fx-text-fill: #f85649;
+}
+
+
 .table-view {
     -fx-background-color: transparent;
     -fx-border-color: #f85649;

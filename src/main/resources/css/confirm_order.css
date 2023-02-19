@@ -1,4 +1,51 @@
-.fieldIsInvalid{
-    -fx-border-color: red;
-    -fx-border-width: 1.5px;
+.background {
+    -fx-background-color: #252E39;
 }
+.textFields {
+    -fx-text-fill: #f85649;
+}
+.fields{
+    -fx-border-radius: 25px;
+    -fx-background-color: #f85649;
+    -fx-text-fill: #252E39;
+    -fx-background-radius: 15px;
+}
+
+
+.button{
+    -fx-background-color: #f85649;
+    -fx-text-fill: #252E39;
+    -fx-background-radius: 25px;
+}
+.button:hover{
+    -fx-background-color: #252E39;
+    -fx-text-fill: #f85649;
+}
+.button:pressed{
+    -fx-border-color: #ef1f10;
+    -fx-border-radius:25px;
+}
+
+
+.list-view {
+    -fx-border-color: #f85649;
+}
+.list-cell {
+    -fx-text-background-color: #f85649;
+}
+.list-cell: odd{
+    -fx-background-color: #252E39;
+}
+.list-cell: odd: hover{
+    -fx-background-color: #f85649;
+    -fx-text-background-color: #252E39;
+}
+.list-cell: even{
+    -fx-background-color: #303c49;
+}
+.list-cell: even: hover{
+    -fx-background-color: #f85649;
+    -fx-text-background-color: #252E39;
+}
+
+

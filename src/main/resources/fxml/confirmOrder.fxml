@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="600.0" stylesheets="@../css/confirm_order.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="600.0" styleClass="background" stylesheets="@../css/confirm_order.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <VBox prefHeight="247.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Your order:">
+            <Label text="Your order:" textFill="#f85649">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <ListView fx:id="cartListView" prefHeight="203.0" prefWidth="200.0" />
+            <ListView fx:id="cartListView" focusTraversable="false" prefHeight="203.0" prefWidth="200.0" />
          </children>
          <BorderPane.margin>
             <Insets right="30.0" />
@@ -37,8 +37,8 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Select option: " />
-                  <RadioButton mnemonicParsing="false" selected="true" text="Takeaway">
+                  <Label text="Select option: " textFill="#f85649" />
+                  <RadioButton mnemonicParsing="false" selected="true" text="Takeaway" textFill="#f85649">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
@@ -46,7 +46,7 @@
                         <ToggleGroup fx:id="deliveryGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="deliveryRadioButton" mnemonicParsing="false" text="Delivery" toggleGroup="$deliveryGroup" />
+                  <RadioButton fx:id="deliveryRadioButton" mnemonicParsing="false" text="Delivery" textFill="#f85649" toggleGroup="$deliveryGroup" />
                </children>
                <VBox.margin>
                   <Insets top="280.0" />
@@ -54,12 +54,12 @@
             </HBox>
             <HBox>
                <children>
-                  <Label fx:id="addressLabel" text="Enter your address:">
+                  <Label fx:id="addressLabel" text="Enter your address:" textFill="#f85649">
                      <HBox.margin>
                         <Insets top="3.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="addressField" stylesheets="@../css/confirm_order.css">
+                  <TextField fx:id="addressField" styleClass="fields" stylesheets="@../css/confirm_order.css">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -79,8 +79,8 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Would you like us to send you an email?" />
-                  <RadioButton fx:id="sendEmailRadioButton" mnemonicParsing="false" text="Yes">
+                  <Label text="Would you like us to send you an email?" textFill="#f85649" />
+                  <RadioButton fx:id="sendEmailRadioButton" mnemonicParsing="false" text="Yes" textFill="#f85649">
                      <HBox.margin>
                         <Insets left="10.0" right="5.0" />
                      </HBox.margin>
@@ -88,7 +88,7 @@
                         <ToggleGroup fx:id="emailGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" selected="true" text="No" toggleGroup="$emailGroup" />
+                  <RadioButton mnemonicParsing="false" selected="true" text="No" textFill="#f85649" toggleGroup="$emailGroup" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -99,12 +99,12 @@
             </HBox>
             <HBox>
                <children>
-                  <Label fx:id="emailLabel" text="Enter your email:">
+                  <Label fx:id="emailLabel" text="Enter your email:" textFill="#f85649">
                      <HBox.margin>
                         <Insets top="3.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="emailField" prefWidth="143.0" stylesheets="@../css/confirm_order.css">
+                  <TextField fx:id="emailField" prefWidth="143.0" styleClass="fields" stylesheets="@../css/confirm_order.css">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -127,12 +127,12 @@
                   <Insets top="50.0" />
                </VBox.margin>
                <children>
-                  <Label text="Total price to pay for:">
+                  <Label text="Total price to pay for:" textFill="#f85649">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="priceOfOrderLabel">
+                  <Label fx:id="priceOfOrderLabel" textFill="#f85649">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -146,7 +146,7 @@
       </VBox>
    </center>
    <top>
-      <Label text="Confirm your order" BorderPane.alignment="CENTER">
+      <Label text="Confirm your order" textFill="#f85649" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
