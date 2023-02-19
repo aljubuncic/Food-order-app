@@ -1,0 +1,20 @@
+.list-view {
+    -fx-border-color: #f85649;
+}
+.list-cell {
+    -fx-text-background-color: #f85649;
+}
+.list-cell: odd{
+    -fx-background-color: #252E39;
+}
+.list-cell: odd: hover{
+    -fx-background-color: #f85649;
+    -fx-text-background-color: #252E39;
+}
+.list-cell: even{
+    -fx-background-color: #303c49;
+}
+.list-cell: even: hover{
+    -fx-background-color: #f85649;
+    -fx-text-background-color: #252E39;
+}
