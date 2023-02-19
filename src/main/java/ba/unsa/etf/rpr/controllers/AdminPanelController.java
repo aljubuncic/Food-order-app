@@ -233,6 +233,7 @@ public class AdminPanelController extends AbstractController{
         }
         catch(OrderException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
+            return;
         }
         new Alert(Alert.AlertType.INFORMATION,"Order with ID " + order.getId()+ " successfully deleted",ButtonType.OK).showAndWait();
     }
@@ -286,6 +287,7 @@ public class AdminPanelController extends AbstractController{
         }
         catch (OrderException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE).showAndWait();
+            return;
         }
         new Alert(Alert.AlertType.INFORMATION,meal.getName() + " successfully deleted",ButtonType.OK).showAndWait();
     }
@@ -314,6 +316,7 @@ public class AdminPanelController extends AbstractController{
         }
         catch (OrderException e){
             new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.CLOSE);
+            return;
         }
         new Alert(Alert.AlertType.INFORMATION,user.getUsername() + " successfully deleted",ButtonType.OK).showAndWait();
     }
