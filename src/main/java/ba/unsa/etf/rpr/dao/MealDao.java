@@ -27,5 +27,5 @@ public interface MealDao extends Dao<Meal>{
      * @return
      * @throws OrderException
      */
-    Meal getByNameAndQuantity(String name, int quantity) throws OrderException;
+    Meal getByNameQuantityAndType(String name, int quantity, String type) throws OrderException;
 }

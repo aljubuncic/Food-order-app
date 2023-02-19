@@ -10,17 +10,17 @@ import java.util.List;
  */
 public class MealManager {
     /**
-     * Checks if the specified meal with the same name and quantity (portion) already exists in the database
-     * @param meal
-     * @throws OrderException in case of meal already existing in the databse
+     * Checks if the specified meal with the same name, quantity (portion) and type already exists in the database
+     * @param meal to be checked
+     * @throws OrderException in case of meal already existing in the database
      */
     public void doesMealAlreadyExist(Meal meal) throws OrderException{
         try{
-            DaoFactory.mealDao().getByNameAndQuantity(meal.getName(), meal.getQuantity());
+            DaoFactory.mealDao().getByNameQuantityAndType(meal.getName(), meal.getQuantity(), meal.getType());
         }catch(OrderException e){
             return;
         }
-        throw new OrderException("Meal with same name and quantity (portion) already exists");
+        throw new OrderException("Meal with same name, quantity (portion) and type already exists");
     }
 
     /**
