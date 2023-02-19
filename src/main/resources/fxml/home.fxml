@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -50,17 +50,17 @@
                   </ImageView>
                   <VBox>
                      <children>
-                        <Label fx:id="usernameLabel" prefHeight="13.0" prefWidth="54.0" text="Username">
+                        <Label fx:id="usernameLabel" prefHeight="13.0" prefWidth="54.0" styleClass="textFields" stylesheets="@../css/home.css" text="Username">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="nameLabel" text="Name">
+                        <Label fx:id="nameLabel" styleClass="textFields" text="Name">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="surnameLabel" text="Surname">
+                        <Label fx:id="surnameLabel" styleClass="textFields" text="Surname">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" top="5.0" />
                            </VBox.margin>
@@ -71,7 +71,7 @@
             </HBox>
             <VBox>
                <children>
-                  <Label text="Your cart: ">
+                  <Label styleClass="textFields" text="Your cart: ">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -83,7 +83,7 @@
       </VBox>
    </left>
    <center>
-      <TableView fx:id="mealsTable" BorderPane.alignment="CENTER">
+      <TableView fx:id="mealsTable" prefHeight="392.0" prefWidth="364.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nameColumn" editable="false" minWidth="75.0" prefWidth="-1.0" text="Name" />
           <TableColumn fx:id="priceColumn" editable="false" minWidth="75.0" prefWidth="-1.0" text="Price (KM)" />
