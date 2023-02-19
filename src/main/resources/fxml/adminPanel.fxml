@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,7 +12,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminPanelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../css/admin_panel.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminPanelController">
    <center>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -106,15 +109,14 @@
         </tabs>
       </TabPane>
    </center>
-   <top>
-      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#exitClick" text="Exit" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#exitClick" text="Exit" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="5.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
 </BorderPane>

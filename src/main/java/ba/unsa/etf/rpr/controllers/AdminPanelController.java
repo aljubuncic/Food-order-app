@@ -327,7 +327,7 @@ public class AdminPanelController extends AbstractController{
      * @throws IOException
      */
     public void exitClick(ActionEvent actionEvent) throws IOException {
-        ((Stage) menuBar.getScene().getWindow()).close();
+        closeWindow(actionEvent);
         openLoginWindow();
     }
 }
