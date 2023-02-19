@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="256.0" styleClass="background" stylesheets="@../../css/add_or_update.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="48.0" prefWidth="256.0">
          <children>
-            <Label text="Name: ">
+            <Label text="Name: " textFill="#f85649">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="nameField">
+            <TextField fx:id="nameField" styleClass="fields">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -30,12 +30,12 @@
       </HBox>
       <HBox prefHeight="50.0" prefWidth="256.0">
          <children>
-            <Label text="Price:">
+            <Label text="Price:" textFill="#f85649">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="priceField">
+            <TextField fx:id="priceField" styleClass="fields">
                <HBox.margin>
                   <Insets left="25.0" />
                </HBox.margin>
@@ -44,12 +44,12 @@
       </HBox>
       <HBox prefHeight="50.0" prefWidth="256.0">
          <children>
-            <Label text="Quantity: ">
+            <Label text="Quantity: " textFill="#f85649">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="quantityField">
+            <TextField fx:id="quantityField" styleClass="fields">
                <HBox.margin>
                   <Insets left="2.0" />
                </HBox.margin>
@@ -58,12 +58,12 @@
       </HBox>
       <HBox prefHeight="49.0" prefWidth="256.0">
          <children>
-            <Label text="Type: ">
+            <Label text="Type: " textFill="#f85649">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox fx:id="typeField" prefWidth="150.0">
+            <ChoiceBox fx:id="typeField" prefWidth="150.0" styleClass="fields">
                <HBox.margin>
                   <Insets left="22.0" />
                </HBox.margin>
@@ -73,7 +73,7 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelClick" text="Cancel" />
-          <Button fx:id="defaultButton" defaultButton="true" mnemonicParsing="false" onAction="#addOrUpdateClick" />
+          <Button fx:id="defaultButton" defaultButton="true" mnemonicParsing="false" onAction="#addOrUpdateClick" textFill="#252e39" />
         </buttons>
          <VBox.margin>
             <Insets right="5.0" />
