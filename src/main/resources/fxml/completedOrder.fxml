@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" styleClass="background" stylesheets="@../css/completed_order.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -29,12 +29,12 @@
                         <Insets left="50.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label text="Your order ID: ">
+                        <Label text="Your order ID: " textFill="#f85649">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="orderID">
+                        <Label fx:id="orderID" textFill="#f85649">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -76,7 +76,7 @@
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <Label text="Thanks for choosing our service!">
+            <Label text="Thanks for choosing our service!" textFill="#f85649">
                <font>
                   <Font size="19.0" />
                </font>
