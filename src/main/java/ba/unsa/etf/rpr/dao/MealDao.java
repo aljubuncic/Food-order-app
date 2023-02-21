@@ -10,16 +10,6 @@ import java.util.List;
  */
 
 public interface MealDao extends Dao<Meal>{
-
-    /**
-     * Returns meals of specified type of meal
-     * @param typeOfMeal
-     * @return list of Meals
-     * @throws OrderException
-     */
-
-    List<Meal> searchByType(String typeOfMeal) throws OrderException;
-
     /**
      * Returns a meal from database with specified name and quantity
      * @param name

@@ -49,25 +49,6 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao{
     }
 
     @Override
-    public List<Order> getByDateRange(Date startingDate, Date endingDate) throws OrderException {
-        try{
-            PreparedStatement statement=getConnection().prepareStatement("SELECT * FROM Orders WHERE dateOfOrder BETWEEN ? AND ?");
-            statement.setObject(1,startingDate);
-            statement.setObject(2,endingDate);
-            ResultSet queryResult = statement.executeQuery();
-            List<Order> orders = new ArrayList<>();
-            while(queryResult.next()){
-                Order object = rowToObject(queryResult);
-                orders.add(object);
-            }
-            queryResult.close();
-            return orders;
-        }catch (SQLException e){
-            throw new OrderException(e.getMessage());
-        }
-    }
-
-    @Override
     public List<Order> getByUser(User user) throws OrderException {
         try {
             PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM Orders WHERE idUser = ?");

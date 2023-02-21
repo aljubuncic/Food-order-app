@@ -11,39 +11,6 @@ import java.util.List;
 
 public interface UserDao extends Dao<User>{
     /**
-     * Returns user with specified email
-     * @param email
-     * @return User
-     * @throws OrderException
-     */
-    User getByEmail(String email) throws OrderException;
-
-    /**
-     * Returns user with specified telephone number
-     * @param telephoneNumber
-     * @return User
-     * @throws OrderException
-     */
-    User getByTelephoneNumber(String telephoneNumber) throws OrderException;
-
-    /**
-     * Returns all users with their specified name and surname
-     * @param name
-     * @param surname
-     * @return list of Users
-     * @throws OrderException
-     */
-    List<User> searchByNameAndSurname(String name, String surname) throws OrderException;
-
-    /**
-     * Returns user with specified address
-     * @param address
-     * @return User
-     * @throws OrderException
-     */
-    List<User> getByAddress(String address) throws OrderException;
-
-    /**
      * Returns user with specified username
      * @param username
      * @return User
